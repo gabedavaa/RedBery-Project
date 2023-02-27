@@ -1,0 +1,51 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Helvetica Neue';
+  min-height: 100vh;
+  display: flex;
+  /* max-width: 1920px; */
+  width: 100%;
+  background-image: url(../images/background.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-conatainer {
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: center; */
+  width: 100%;
+  min-height: 100vh;
+}
+
+.logo-redbery-container {
+  /* background-color: blue; */
+  /* width: 100%; */
+  height: 60px;
+  margin-left: 70px;
+  margin-right: 70px;
+  margin-top: 25px;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.logo-redbery {
+  /* display: flex; */
+  width: 236px;
+  height: 38px;
+}
+
+/* .btn-container {
+  display: flex;
+  align-items: center;
+}
+.starter-btn {
+  display: flex;
+  align-items: center;
+} */
