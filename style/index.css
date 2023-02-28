@@ -41,11 +41,7 @@ body {
   height: 38px;
 }
 
-/* .btn-container {
-  display: flex;
-  align-items: center;
-}
 .starter-btn {
-  display: flex;
+  display: none;
   align-items: center;
-} */
+} 
