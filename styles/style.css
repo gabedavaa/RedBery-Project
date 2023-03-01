@@ -42,6 +42,6 @@ body {
 }
 
 .starter-btn {
-  display: none;
+  display: flex;
   align-items: center;
-} 
+}
