@@ -10,7 +10,7 @@ body {
   display: flex;
   /* max-width: 1920px; */
   width: 100%;
-  background-image: url(../images/background.svg);
+  background-image: url(../images/background.webp);
   background-size: cover;
   background-repeat: no-repeat;
   align-items: center;
@@ -18,11 +18,9 @@ body {
 }
 
 .main-conatainer {
-  /* display: flex; */
-  /* align-items: center; */
-  /* justify-content: center; */
   width: 100%;
   min-height: 100vh;
+  position: relative;
 }
 
 .logo-redbery-container {
@@ -36,21 +34,26 @@ body {
 }
 
 .logo-redbery {
-  /* display: flex; */
   width: 236px;
   height: 38px;
 }
 
-/* .btn-container {
-  width: 500px;
-  height: 500px;
-  background-color: blue;
-  display: flex;
-  text-align: center;
-} */
-
 .starter-btn {
   display: flex;
-  justify-content: center;
   align-items: center;
+  padding: 18px 126px;
+  background-color: #1a1a1a;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  left: 608px;
+  bottom: 350px;
+  border-radius: 5px;
+}
+
+.doc-redberry {
+  position: absolute;
+  right: 400px;
+  bottom: 150px;
 }
