@@ -17,6 +17,10 @@ GREEN
 RED
 #F02424
 
+BLUE
+#0E80BF
+#6B40E3
+
 */
 
 * {
@@ -27,12 +31,12 @@ RED
 
 html {
   font-size: 62.5%;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 body {
   font-family: 'Helvetica Neue';
-  min-height: 100vh;
+  /* height: 100vh; */
   max-width: 100%;
 }
 
@@ -55,16 +59,17 @@ body {
 .container-edit {
   background-color: #f8f9fa;
   max-width: 100%;
-  height: 100vh;
   padding-left: 15rem;
   padding-right: 15rem;
   padding-top: 4.7rem;
+  padding-bottom: 6.5rem;
+
+  position: relative;
 }
 
 .container-view {
   background-color: #fff;
   max-width: 100%;
-  height: 100vh;
   padding-left: 8rem;
   padding-right: 7.5rem;
 }
@@ -96,7 +101,7 @@ body {
   grid-template-columns: 1fr 1fr;
   column-gap: 5.6rem;
 
-  padding-top: 7.7rem;
+  margin-top: 7.7rem;
 }
 
 .names--form label {
@@ -118,6 +123,7 @@ body {
   border-radius: 0.4rem;
   padding: 1.3rem 3.4rem 1.3rem 1.3rem;
   font-size: 1.6rem;
+  font-weight: 400;
   color: #000;
   margin: 0.8rem 0;
   border: none;
@@ -166,4 +172,189 @@ body {
 .alert--input input,
 .alert--input input:focus {
   outline: 0.1rem solid #f02424;
+}
+
+/* *********************** */
+/* IMAGE UPLOADER BTN */
+/* *********************** */
+
+.image--upload {
+  margin-top: 5.4rem;
+  display: flex;
+  align-items: center;
+}
+
+.image--upload h2 {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.btn,
+.btn:link,
+.btn:visited {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+
+  color: #fff;
+  background-color: #0e80bf;
+  padding: 5px 20px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 400;
+  margin-left: 4rem;
+}
+
+.upload-btn-wrapper input[type='file'] {
+  font-size: 10rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+/* *********************** */
+/* ABOUT ME */
+/* *********************** */
+.about--me {
+  margin-top: 4.9rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.about--me label {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #000;
+  margin-bottom: 0.8rem;
+}
+
+.about--me textarea {
+  height: 8rem;
+  resize: none;
+  font-size: 1.6rem;
+  padding: 1.3rem 1.6rem;
+  font-weight: 400;
+  border: none;
+  box-shadow: 0 1px 2px rgb(0, 0, 0, 0.1);
+  border-radius: 0.4rem;
+}
+
+.about--me textarea:focus {
+  outline: 0.2rem solid #bcbcbc;
+}
+
+/* *********************** */
+/* CONTACTS */
+/* *********************** */
+
+.contact--form {
+  margin-top: 3.3rem;
+}
+
+.mail-container,
+.phone-container {
+  display: flex;
+  flex-direction: column;
+
+  position: relative;
+}
+
+.phone-container {
+  margin-top: 2.9rem;
+}
+
+.contact--form label {
+  font-size: 1.6rem;
+  margin-bottom: 0.8rem;
+}
+
+.contact--form p {
+  margin-top: 0.8rem;
+  color: #495057;
+  font-size: 1.4rem;
+  font-weight: 300;
+}
+
+.contact--form input,
+.contact--form select {
+  width: 100%;
+  height: 4.8rem;
+  border-radius: 0.4rem;
+  padding: 1.3rem 3.4rem 1.3rem 1.3rem;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #000;
+  border: none;
+  box-shadow: 0 1px 2px rgb(0, 0, 0, 0.1);
+}
+
+.phone-container input,
+.phone-container select {
+  font-size: 1.8rem;
+}
+
+.contact--form *:focus {
+  outline: 0.2rem solid #bcbcbc;
+}
+
+/* *********************** */
+/* NEXT PAGE BUTTON */
+/* *********************** */
+
+.next--page--container {
+  display: flex;
+  justify-content: end;
+  margin-top: 16rem;
+}
+
+.next--page--btn,
+.next--page--btn:link,
+.next--page--btn:visited {
+  display: inline-block;
+
+  padding: 1.3rem 3.5rem;
+  text-decoration: none;
+  background-color: #6b40e3;
+  border-radius: 0.4rem;
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 500;
+
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+
+  transition: all 0.3s;
+}
+
+/* *********************** */
+/* ARROW  BACK  */
+/* *********************** */
+
+.arrow-back--container a,
+.arrow-back--container a:link,
+.arrow-back--container a:visited {
+  position: absolute;
+  height: 4rem;
+  width: 4rem;
+  background-color: #fff;
+  left: 4.8rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+.arrow-back {
+  font-size: 2rem;
 }

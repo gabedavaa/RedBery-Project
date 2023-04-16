@@ -11,12 +11,24 @@
     <main>
       <section class="section-general-info grid grid--2-cols">
         <div class="container-edit">
+          <!-- arrow back -->
+          <div class="arrow-back--container">
+            <a href="#">
+              <ion-icon
+                class="arrow-back"
+                name="chevron-back-outline"
+              ></ion-icon>
+            </a>
+          </div>
+          <!-- header -->
           <div class="slide--header">
             <div class="header--container">
               <h1 class="slide--headline">პირადი ინფო</h1>
               <p class="slide--number">1/3</p>
             </div>
           </div>
+
+          <!-- name and last-name -->
           <form class="names--form">
             <div class="name">
               <label for="name">სახელი</label>
@@ -31,7 +43,7 @@
                 name="alert-circle-outline"
               ></ion-icon>
             </div>
-            <div class="name alert--input">
+            <div class="name">
               <label for="last-name">გვარი</label>
               <input id="last-name" type="text" class="name--input" required />
               <p>მინიმუმ 2 ასო, ქართული ასოები</p>
@@ -45,7 +57,61 @@
               ></ion-icon>
             </div>
           </form>
+
+          <!-- image -->
+          <div class="image--upload">
+            <h2>პირადი ფოტოს ატვირთვა</h2>
+            <div class="upload-btn-wrapper">
+              <button class="btn">ატვირთვა</button>
+              <input type="file" name="myfile" />
+            </div>
+          </div>
+
+          <!-- about me -->
+          <div class="about--me">
+            <label for="about-me">ჩემს შესახებ (არასავალდებულო)</label>
+            <textarea type="text" class="about--me--input"></textarea>
+          </div>
+
+          <!-- mail and phone -->
+          <form class="contact--form">
+            <div class="mail-container">
+              <label for="mail">ელ.ფოსტა</label>
+              <input type="email" required />
+              <p>უნდა მთავრდებოდეს @redberry-ით</p>
+
+              <ion-icon
+                class="checkmark-icon hidden"
+                name="checkmark-outline"
+              ></ion-icon>
+              <ion-icon
+                class="alert-icon hidden"
+                name="alert-circle-outline"
+              ></ion-icon>
+            </div>
+
+            <div class="phone-container">
+              <label for="phone">მობილურის ნომერი</label>
+              <input type="tel" required />
+              <p>უნდა აკმაყოფილებდეს ქართული ნომრის ფორმატს</p>
+
+              <ion-icon
+                class="checkmark-icon hidden"
+                name="checkmark-outline"
+              ></ion-icon>
+              <ion-icon
+                class="alert-icon hidden"
+                name="alert-circle-outline"
+              ></ion-icon>
+            </div>
+          </form>
+
+          <!-- next page button -->
+          <div class="next--page--container">
+            <a class="next--page--btn" href="#">შემდეგი</a>
+          </div>
         </div>
+
         <div class="container-view"></div>
       </section>
     </main>
