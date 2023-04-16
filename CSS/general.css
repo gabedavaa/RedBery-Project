@@ -1,0 +1,169 @@
+/* 
+
+-- 02 COLORS
+
+BLACK
+#000
+#1a1a1a
+
+GRAY 0
+#f8f9fa
+#495057
+#bcbcbc
+
+GREEN
+#98e37e
+
+RED
+#F02424
+
+*/
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Helvetica Neue';
+  min-height: 100vh;
+  max-width: 100%;
+}
+
+/* *********************** */
+/* GENERAL REUSABLE COMPONENTS */
+/* *********************** */
+
+.hidden {
+  display: none;
+}
+
+.grid {
+  display: grid;
+}
+
+.grid--2-cols {
+  grid-template-columns: 58fr 42fr;
+}
+
+.container-edit {
+  background-color: #f8f9fa;
+  max-width: 100%;
+  height: 100vh;
+  padding-left: 15rem;
+  padding-right: 15rem;
+  padding-top: 4.7rem;
+}
+
+.container-view {
+  background-color: #fff;
+  max-width: 100%;
+  height: 100vh;
+  padding-left: 8rem;
+  padding-right: 7.5rem;
+}
+
+.header--container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-bottom: 1.2rem;
+
+  border-bottom: 0.1rem solid #1a1a1a;
+}
+
+.slide--headline {
+  font-size: 2.4rem;
+  color: #1a1a1a;
+  font-weight: 700;
+}
+
+.slide--number {
+  color: #1a1a1a;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.names--form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 5.6rem;
+
+  padding-top: 7.7rem;
+}
+
+.names--form label {
+  font-size: 1.6rem;
+  color: #000;
+  font-weight: 500;
+}
+
+.names--form p {
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: #495057;
+}
+
+.names--form input,
+.names--form select {
+  width: 100%;
+  height: 4.8rem;
+  border-radius: 0.4rem;
+  padding: 1.3rem 3.4rem 1.3rem 1.3rem;
+  font-size: 1.6rem;
+  color: #000;
+  margin: 0.8rem 0;
+  border: none;
+  box-shadow: 0 1px 2px rgb(0, 0, 0, 0.1);
+}
+
+.names--form *:focus {
+  outline: 0.2rem solid #bcbcbc;
+}
+
+.name {
+  position: relative;
+}
+
+.valid--input input,
+.valid--input input:focus {
+  outline: 0.1rem solid #98e37e;
+}
+
+.valid--input .checkmark-icon {
+  position: absolute;
+  height: 1.6rem;
+  width: 1.6rem;
+  background-color: #98e37e;
+  border-radius: 50%;
+  color: #fff;
+  top: 4.5rem;
+  right: 1.6rem;
+
+  display: inline-block;
+}
+
+.alert--input .alert-icon {
+  position: absolute;
+  height: 1.8rem;
+  width: 1.8rem;
+  background-color: #f02424;
+  border-radius: 50%;
+  color: #fff;
+  top: 4.5rem;
+  right: 1.4rem;
+
+  display: inline-block;
+}
+
+.alert--input input,
+.alert--input input:focus {
+  outline: 0.1rem solid #f02424;
+}

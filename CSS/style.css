@@ -50,6 +50,7 @@ body {
   left: 608px;
   bottom: 350px;
   border-radius: 5px;
+  z-index: 999;
 }
 
 .doc-redberry {
