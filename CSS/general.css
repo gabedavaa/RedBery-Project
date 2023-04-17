@@ -5,17 +5,20 @@
 BLACK
 #000
 #1a1a1a
+#1A1A1A
 
 GRAY 0
 #f8f9fa
 #495057
 #bcbcbc
+#898989
 
 GREEN
 #98e37e
 
 RED
 #F02424
+#F93B1D
 
 BLUE
 #0E80BF
@@ -59,19 +62,9 @@ body {
 .container-edit {
   background-color: #f8f9fa;
   max-width: 100%;
-  padding-left: 15rem;
-  padding-right: 15rem;
-  padding-top: 4.7rem;
-  padding-bottom: 6.5rem;
+  padding: 4.7rem 15rem 6.5rem 15rem;
 
   position: relative;
-}
-
-.container-view {
-  background-color: #fff;
-  max-width: 100%;
-  padding-left: 8rem;
-  padding-right: 7.5rem;
 }
 
 .header--container {
@@ -357,4 +350,73 @@ body {
 
 .arrow-back {
   font-size: 2rem;
+}
+
+/* ///////////////////// */
+/* ///////////////////// */
+/* ///////////////////// */
+
+/* *********************** */
+/* CONTAINER VIEW  */
+/* *********************** */
+
+.container-view {
+  background-color: #fff;
+  max-width: 100%;
+
+  /* padding: 4.8rem 8rem 0 7.5rem; */
+  padding: 4.8rem 5rem 0 4.5rem;
+}
+
+.container--contact {
+  margin-top: 1.7rem;
+}
+
+.info--container h1 {
+  font-size: 3.4rem;
+  color: #f93b1d;
+  font-weight: 700;
+}
+
+.phone-email-container {
+  display: flex;
+  align-items: center;
+}
+
+.phone-email-container ion-icon {
+  font-size: 1.6rem;
+  color: #898989;
+  padding-right: 1.1rem;
+}
+
+.phone-email-container p {
+  font-size: 1.8rem;
+  color: #1a1a1a;
+}
+
+.call {
+  margin-top: 1rem;
+}
+
+.about--me-view {
+  margin-top: 3.4rem;
+}
+
+.about--me-view h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #f93b1d;
+}
+
+.about--me-view p {
+  margin-top: 1.5rem;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #000000;
+}
+
+.author-img {
+  width: 24.6rem;
+  height: 24.6rem;
+  border-radius: 50%;
 }
