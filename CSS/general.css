@@ -12,6 +12,7 @@ GRAY 0
 #495057
 #bcbcbc
 #898989
+#C1C1C1
 
 GREEN
 #98e37e
@@ -198,7 +199,7 @@ body {
 
   color: #fff;
   background-color: #0e80bf;
-  padding: 5px 20px;
+  padding: 5px 19px;
   border-radius: 4px;
   font-size: 14px;
   font-weight: 400;
@@ -220,6 +221,8 @@ body {
   margin-top: 4.9rem;
   display: flex;
   flex-direction: column;
+
+  position: relative;
 }
 
 .about--me label {
@@ -230,7 +233,7 @@ body {
 }
 
 .about--me textarea {
-  height: 8rem;
+  height: 10.3rem;
   resize: none;
   font-size: 1.6rem;
   padding: 1.3rem 1.6rem;
@@ -353,6 +356,64 @@ body {
 }
 
 /* ///////////////////// */
+
+/* *********************** */
+/* SECOND SLIDE EDIT */
+/* *********************** */
+.margin-top--31 {
+  margin-top: 3.1rem;
+}
+
+.job-description {
+  margin-top: 3.3rem;
+}
+
+.job-description textarea {
+  height: 12.3rem;
+}
+
+.job-description--border {
+  margin-top: 5.8rem;
+  border-bottom: 1px solid #c1c1c1;
+}
+
+.valid--input textarea,
+.valid--input textarea:focus {
+  outline: 0.1rem solid #98e37e;
+}
+
+.valid--input .checkmark-icon {
+  position: absolute;
+  height: 1.6rem;
+  width: 1.6rem;
+  background-color: #98e37e;
+  border-radius: 50%;
+  color: #fff;
+  top: 4.5rem;
+  right: 1.6rem;
+
+  display: inline-block;
+}
+
+.alert--input .alert-icon {
+  position: absolute;
+  height: 1.8rem;
+  width: 1.8rem;
+  background-color: #f02424;
+  border-radius: 50%;
+  color: #fff;
+  top: 4.5rem;
+  right: 1.4rem;
+
+  display: inline-block;
+}
+
+.alert--input textarea,
+.alert--input textarea:focus {
+  outline: 0.1rem solid #f02424;
+}
+
+/* ///////////////////// */
 /* ///////////////////// */
 /* ///////////////////// */
 
@@ -370,6 +431,10 @@ body {
 
 .container--contact {
   margin-top: 1.7rem;
+}
+
+.info--container {
+  margin-top: 2rem;
 }
 
 .info--container h1 {
