@@ -16,12 +16,12 @@
         <div class="container-edit hidden">
           <!-- arrow back -->
           <div class="arrow-back--container">
-            <a href="#">
+            <button>
               <ion-icon
                 class="arrow-back"
                 name="chevron-back-outline"
               ></ion-icon>
-            </a>
+            </button>
           </div>
           <!-- header -->
           <div class="slide--header">
@@ -130,7 +130,7 @@
 
           <!-- next page button -->
           <div class="next--page--container">
-            <a class="next--page--btn" href="#">შემდეგი</a>
+            <button class="btn next--page">შემდეგი</button>
           </div>
         </div>
         <!-- //////////////////////// -->
@@ -139,12 +139,12 @@
         <div class="container-edit">
           <!-- arrow back -->
           <div class="arrow-back--container">
-            <a href="#">
+            <button>
               <ion-icon
                 class="arrow-back"
                 name="chevron-back-outline"
               ></ion-icon>
-            </a>
+            </button>
           </div>
 
           <!-- header -->
@@ -238,12 +238,22 @@
                 class="alert-icon hidden"
                 name="alert-circle-outline"
               ></ion-icon>
-              <div class="job-description--border"></div>
+              <div class="border-bottom margin-top--58"></div>
             </div>
           </div>
 
           <!-- adding -->
-          <div><button class="btn">მეტი გამოცდილების დამატება</button></div>
+          <div>
+            <button class="btn btn--add-experience">
+              მეტი გამოცდილების დამატება
+            </button>
+          </div>
+
+          <!-- previous and next page btns -->
+          <div class="prev-next--page">
+            <button class="btn prev--btn">უკან</button>
+            <button class="btn next--page">შემდეგი</button>
+          </div>
         </div>
 
         <!-- //////////////////////////// -->
@@ -255,12 +265,22 @@
               <h1>ანზორ მუმლაძე</h1>
               <div class="container--contact">
                 <div class="phone-email-container">
-                  <ion-icon name="at-outline"></ion-icon>
-                  <p>anzor434@redberry.ge</p>
+                  <a href="mailto:anzor434@redberry.ge"
+                    ><ion-icon
+                      class="phone-email--icons"
+                      name="at-outline"
+                    ></ion-icon
+                    ><span></span>anzor434@redberry.ge</a
+                  >
                 </div>
                 <div class="phone-email-container call">
-                  <ion-icon name="call-outline"></ion-icon>
-                  <p>+995568300123</p>
+                  <a href="tel:+995568300123"
+                    ><ion-icon
+                      class="phone-email--icons"
+                      name="call-outline"
+                    ></ion-icon
+                    ><span>+995568300123</span></a
+                  >
                 </div>
                 <div class="about--me-view">
                   <h3>ჩემს შესახებ</h3>
@@ -281,6 +301,8 @@
           </div>
 
           <!--  -->
+
+          <div class="border-bottom margin-top--19"></div>
         </div>
       </section>
     </main>

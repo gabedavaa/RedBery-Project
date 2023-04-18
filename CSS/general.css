@@ -311,6 +311,10 @@ body {
   margin-top: 16rem;
 }
 
+.next--page--container button {
+  margin: 0;
+}
+
 .next--page--btn,
 .next--page--btn:link,
 .next--page--btn:visited {
@@ -335,9 +339,9 @@ body {
 /* ARROW  BACK  */
 /* *********************** */
 
-.arrow-back--container a,
-.arrow-back--container a:link,
-.arrow-back--container a:visited {
+.arrow-back--container button,
+.arrow-back--container button:link,
+.arrow-back--container button:visited {
   position: absolute;
   height: 4rem;
   width: 4rem;
@@ -347,8 +351,17 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  border: none;
 
   cursor: pointer;
+}
+
+.arrow-back--container button:active {
+  transform: scale(1.02);
+}
+
+.arrow-back--container:hover .arrow-back {
+  color: #6b40e3;
 }
 
 .arrow-back {
@@ -372,9 +385,12 @@ body {
   height: 12.3rem;
 }
 
-.job-description--border {
-  margin-top: 5.8rem;
+.border-bottom {
   border-bottom: 1px solid #c1c1c1;
+}
+
+.margin-top--58 {
+  margin-top: 5.8rem;
 }
 
 .valid--input textarea,
@@ -413,6 +429,39 @@ body {
   outline: 0.1rem solid #f02424;
 }
 
+.btn--add-experience {
+  font-size: 1.6rem;
+  font-weight: 500;
+  padding: 14px 21px;
+  background-color: #62a1eb;
+  margin: 4.5rem 0 0 0;
+}
+
+.btn--add-experience:active {
+  transform: scale(0.99);
+}
+
+.prev-next--page {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.prev--btn,
+.next--page {
+  background-color: #6b40e3;
+  padding: 1.4rem 3.5rem;
+  margin: 11.4rem 0 0 0;
+  font-size: 1.6rem;
+  font-weight: 500;
+  letter-spacing: 0.08rem;
+}
+
+.prev--btn:active,
+.next--page:active {
+  transform: scale(0.99);
+}
+
 /* ///////////////////// */
 /* ///////////////////// */
 /* ///////////////////// */
@@ -448,14 +497,21 @@ body {
   align-items: center;
 }
 
-.phone-email-container ion-icon {
+.phone-email--icons {
   font-size: 1.6rem;
   color: #898989;
   padding-right: 1.1rem;
 }
 
-.phone-email-container p {
+.phone-email-container a {
+  display: flex;
+  align-items: center;
+}
+
+.phone-email-container a:link {
   font-size: 1.8rem;
+  text-decoration: none;
+  transition: all 0.3s;
   color: #1a1a1a;
 }
 
@@ -484,4 +540,8 @@ body {
   width: 24.6rem;
   height: 24.6rem;
   border-radius: 50%;
+}
+
+.margin-top--19 {
+  margin-top: 1.9rem;
 }
