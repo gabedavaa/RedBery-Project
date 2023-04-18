@@ -5,7 +5,6 @@
 BLACK
 #000
 #1a1a1a
-#1A1A1A
 
 GRAY 0
 #f8f9fa
@@ -13,6 +12,7 @@ GRAY 0
 #bcbcbc
 #898989
 #C1C1C1
+#909090
 
 GREEN
 #98e37e
@@ -39,7 +39,7 @@ html {
 }
 
 body {
-  font-family: 'Helvetica Neue';
+  font-family: 'Helvetica Neue', sans-serif;
   /* height: 100vh; */
   max-width: 100%;
 }
@@ -544,4 +544,49 @@ body {
 
 .margin-top--19 {
   margin-top: 1.9rem;
+}
+
+/* experience */
+
+.experience-section {
+  margin-top: 2.4rem;
+}
+
+.experience-section h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #f93b1d;
+}
+
+.experience-section h4 {
+  margin-top: 1.5rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+.experience-section h5 {
+  margin-top: 0.7rem;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #909090;
+  font-style: italic;
+}
+
+.experience-section h6 {
+  margin-top: 1.6rem;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #000;
+}
+
+.logo-12-1--container img {
+  margin-top: 21.9rem;
+}
+
+.footer-background {
+  background-color: #f8f9fa;
+  margin-top: 4.4rem;
+  /* height: 100%; */
+  width: auto;
 }
