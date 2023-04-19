@@ -119,6 +119,7 @@ body {
   font-size: 1.6rem;
   font-weight: 400;
   color: #000;
+  background-color: #fff;
   margin: 0.8rem 0;
   border: none;
   box-shadow: 0 1px 2px rgb(0, 0, 0, 0.1);
@@ -133,6 +134,8 @@ body {
 }
 
 .valid--input input,
+.valid--input select,
+.valid--input select:focus,
 .valid--input input:focus {
   outline: 0.1rem solid #98e37e;
 }
@@ -158,12 +161,14 @@ body {
   border-radius: 50%;
   color: #fff;
   top: 4.5rem;
-  right: 1.4rem;
+  right: 1.5rem;
 
   display: inline-block;
 }
 
 .alert--input input,
+.alert--input select,
+.alert--input select:focus,
 .alert--input input:focus {
   outline: 0.1rem solid #f02424;
 }
@@ -375,6 +380,10 @@ body {
 /* *********************** */
 .margin-top--31 {
   margin-top: 3.1rem;
+}
+
+.margin-top--77 {
+  margin-top: 7.7rem;
 }
 
 .job-description {
