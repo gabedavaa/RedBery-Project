@@ -1,12 +1,22 @@
 'strict mode';
 ////////////////////////////
-console.log(456);
-
+////////////////////////////
 const containerEdits = document.querySelectorAll('.container-edit');
+const arrowBackIcons = document.querySelectorAll('.arrow-back--btn');
+////////////////////////////////////////
+console.log(containerEdits);
 
-containerEdits.forEach(containerEdit => {
-  console.log(containerEdit);
-  // containerEdit.toggleAttribute('hidden');
-});
+const arrowBackIconBtn = function () {
+  for (let i = 0; i < arrowBackIcons.length; i++) {
+    arrowBackIcons[i].addEventListener('click', event => {
+      containerEdits[i].toggleAttribute('hidden');
+      containerEdits[i - 1].classList.remove('hidden');
+    });
+  }
+};
 
+arrowBackIconBtn();
+
+/*
 const prevNextPageBtn = function () {};
+*/

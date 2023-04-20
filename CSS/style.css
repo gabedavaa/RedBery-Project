@@ -10,7 +10,6 @@ body {
   display: flex;
   /* max-width: 1920px; */
   width: 100%;
-  background-image: url(../images/background.webp);
   background-size: cover;
   background-repeat: no-repeat;
   align-items: center;
@@ -21,6 +20,7 @@ body {
   width: 100%;
   min-height: 100vh;
   position: relative;
+  background-image: url(../images/background.webp);
 }
 
 .logo-redbery-container {
