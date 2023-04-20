@@ -7,13 +7,13 @@
     <link rel="stylesheet" href="./font/HelveticaNeue.ttc" />
     <link rel="stylesheet" href="./CSS/general.css" />
     <script defer src="./js/script.js"></script>
-    <title>Document</title>
+    <title>Redbery</title>
   </head>
   <body>
     <main>
-      <section class="section-general-info grid grid--2-cols">
+      <div class="section-general-info grid grid--2-cols">
         <!-- STARTER WINDOW -->
-        <div class="starter-container">
+        <section id="section-1" class="starter-container hidden">
           <div class="logo-redbery-container">
             <img
               class="logo-redbery"
@@ -23,14 +23,16 @@
           </div>
           <div class="border-bottom--26"></div>
           <div class="btn-container">
-            <button class="starter-btn">რეზიუმეს დამატება</button>
+            <button id="starter-btn-section-1" class="starter-btn">
+              რეზიუმეს დამატება
+            </button>
           </div>
           <img class="doc-redberry" src="./images/LOGO-40 1.png" alt="" />
-        </div>
+        </section>
 
         <!-- FIRST SLIDE PERSONAL INFO -->
         <!-- 1/3 -->
-        <div class="container-edit hidden">
+        <section id="section-2" class="container-edit hidden">
           <!-- arrow back -->
           <div class="arrow-back--container">
             <button class="arrow-back--btn">
@@ -147,13 +149,15 @@
 
           <!-- next page button -->
           <div class="next--page--container">
-            <button class="btn next--page">შემდეგი</button>
+            <button id="next-page-section-2" class="btn next--page">
+              შემდეგი
+            </button>
           </div>
-        </div>
+        </section>
         <!-- //////////////////////// -->
         <!-- SECOND SLIDE EXPERIENCE -->
         <!-- 2/3 -->
-        <div class="container-edit hidden">
+        <section id="section-3" class="container-edit hidden">
           <!-- arrow back -->
           <div class="arrow-back--container">
             <button class="arrow-back--btn">
@@ -269,14 +273,16 @@
           <!-- previous and next page btns -->
           <div class="prev-next--page">
             <button class="btn prev--btn">უკან</button>
-            <button class="btn next--page">შემდეგი</button>
+            <button id="next-page-section-3" class="btn next--page">
+              შემდეგი
+            </button>
           </div>
-        </div>
+        </section>
 
         <!-- //////////////////////// -->
         <!-- third SLIDE EDUCATION -->
         <!-- 3/3 -->
-        <div class="container-edit hidden">
+        <section id="section-4" class="container-edit hidden">
           <!-- arrow back -->
           <div class="arrow-back--container">
             <button class="arrow-back--btn">
@@ -393,13 +399,30 @@
           <!-- previous and next page btns -->
           <div class="prev-next--page">
             <button class="btn prev--btn">უკან</button>
-            <button class="btn next--page">დასრულება</button>
+            <button id="finish-page-section-4" class="btn next--page">
+              დასრულება
+            </button>
           </div>
-        </div>
+        </section>
 
         <!-- //////////////////////////// -->
         <!-- VIEWS -->
-        <div class="container-view hidden">
+        <section id="section-5" class="container-view finished-editing">
+          <!-- arrow btn -->
+          <div class="arrow-back--container hidden last-arrow-btn">
+            <button class="arrow-back--btn">
+              <ion-icon
+                class="arrow-back"
+                name="chevron-back-outline"
+              ></ion-icon>
+            </button>
+          </div>
+
+          <div class="btn-close">
+            <button ">x</button>
+            <p >რეზიუმე წარმატებით გაიგზავნა ✅</p>
+          </div>
+
           <!-- info section -->
           <div class="grid grid--2-cols">
             <div class="info--container">
@@ -475,8 +498,8 @@
             <img src="./images/LOGO-12 1.png" alt="" />
           </div>
           <div class="footer-background"></div>
-        </div>
-      </section>
+        </section>
+      </div>
     </main>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js"></script>
   </body>
