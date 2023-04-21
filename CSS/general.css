@@ -568,12 +568,16 @@ body {
 
 .info--container {
   margin-top: 2rem;
+  /* max-width: 42rem; */
 }
 
 .info--container h1 {
   font-size: 3.4rem;
   color: #f93b1d;
   font-weight: 700;
+  max-width: 29.7rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .phone-email-container {
@@ -599,6 +603,11 @@ body {
   color: #1a1a1a;
 }
 
+.phone-email-container p {
+  font-size: 1.8rem;
+  color: #1a1a1a;
+}
+
 .call {
   margin-top: 1rem;
 }
@@ -618,6 +627,9 @@ body {
   font-size: 1.6rem;
   font-weight: 400;
   color: #000000;
+  max-width: 29.5rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .author-img {

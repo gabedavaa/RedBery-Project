@@ -55,7 +55,7 @@
             <div class="name">
               <label for="name">სახელი</label>
               <input
-                id="name"
+                id="name-input"
                 type="text"
                 class="name--input"
                 placeholder="სახელი"
@@ -74,7 +74,7 @@
             <div class="name">
               <label for="last-name">გვარი</label>
               <input
-                id="last-name"
+                id="lastname-input"
                 type="text"
                 class="name--input"
                 placeholder="გვარი"
@@ -97,7 +97,12 @@
             <h2>პირადი ფოტოს ატვირთვა</h2>
             <div class="upload-btn-wrapper">
               <button class="btn">ატვირთვა</button>
-              <input type="file" name="myfile" />
+              <input
+                id="profile-image"
+                type="file"
+                name="myfile"
+                accept="image/*"
+              />
             </div>
           </div>
 
@@ -105,6 +110,7 @@
           <div class="about--me">
             <label for="about-me">ჩემს შესახებ (არასავალდებულო)</label>
             <textarea
+              id="about-me-input"
               type="text"
               placeholder="ზოგადი ინფო შენ შესახებ"
             ></textarea>
@@ -115,6 +121,7 @@
             <div class="mail-container">
               <label for="mail">ელ.ფოსტა</label>
               <input
+                id="mail-input"
                 type="email"
                 placeholder="anzorr666@redberry.ge"
                 required
@@ -133,7 +140,12 @@
 
             <div class="phone-container">
               <label for="phone">მობილურის ნომერი</label>
-              <input type="tel" placeholder="+995568300123" required />
+              <input
+                id="phone-input"
+                type="tel"
+                placeholder="+995568300132"
+                required
+              />
               <p>უნდა აკმაყოფილებდეს ქართული ნომრის ფორმატს</p>
 
               <ion-icon
@@ -398,7 +410,7 @@
 
           <!-- previous and next page btns -->
           <div class="prev-next--page">
-            <button class="btn prev--btn">უკან</button>
+            <button id="back-page-section-4" class="btn prev--btn">უკან</button>
             <button id="finish-page-section-4" class="btn next--page">
               დასრულება
             </button>
@@ -426,37 +438,43 @@
           <!-- info section -->
           <div class="grid grid--2-cols">
             <div class="info--container">
-              <h1>ანზორ მუმლაძე</h1>
+              <h1>
+                <span id="name-output">ანზორ</span>
+                <span id="lastname-output">მუმლაძე</span>
+              </h1>
               <div class="container--contact">
                 <div class="phone-email-container">
-                  <a href="mailto:anzor434@redberry.ge"
+                  <a id="mail-output" href="mailto:anzor434@redberry.ge"
                     ><ion-icon
                       class="phone-email--icons"
                       name="at-outline"
                     ></ion-icon
-                    ><span></span>anzor434@redberry.ge</a
+                    ><span id="mail-text">anzor434@redberry.ge</span></a
                   >
+                  <!-- <p>anzor434@redberry.ge</p> -->
                 </div>
                 <div class="phone-email-container call">
-                  <a href="tel:+995568300123"
+                  <a id="phone-output" href="tel:+995568300123"
                     ><ion-icon
                       class="phone-email--icons"
                       name="call-outline"
-                    ></ion-icon
-                    ><span>+995568300123</span></a
+                    ></ion-icon>
+                    <span id="phone-number">+995568300123</span></a
                   >
+                  <!-- <p>+995568300123</p> -->
                 </div>
-                <div class="about--me-view">
-                  <h3>ჩემს შესახებ</h3>
-                  <p>
-                    ძალიან მიყვარს დიზაინის კეთება. დილით ადრე რომ ავდგები
-                    გამამხნევებელი ვარჯიშების მაგიერ დიზაინს ვაკეთებ.
-                  </p>
-                </div>
+              </div>
+              <div class="about--me-view">
+                <h3>ჩემს შესახებ</h3>
+                <p id="about-me-output">
+                  ძალიან მიყვარს დიზაინის კეთება. დილით ადრე რომ ავდგები
+                  გამამხნევებელი ვარჯიშების მაგიერ დიზაინს ვაკეთებ.
+                </p>
               </div>
             </div>
             <div>
               <img
+                id="profile-img-output"
                 class="author-img"
                 src="./images/author photo.png"
                 alt="author photo"
