@@ -175,14 +175,18 @@ const aboutMeOutput = document.getElementById('about-me-output');
 
 //////////////////////////////////////////////
 ///////////////////////////////////////////////
+let inputValues = {};
+
 // NAME
 nameInput.addEventListener('input', e => {
-  nameOutput.textContent = nameInput.value;
+  inputValues.nameInputValue = nameInput.value;
+  nameOutput.textContent = inputValues.nameInputValue;
 });
 
 // LAST-NAME
 lastNameInput.addEventListener('input', e => {
-  lastNameOutput.textContent = lastNameInput.value;
+  inputValues.lastNameInputValue = lastNameInput.value;
+  lastNameOutput.textContent = inputValues.lastNameInputValue;
 });
 
 // PROFILE IMAGE
@@ -196,25 +200,33 @@ profileImageInput.addEventListener('change', e => {
     profileImageOutput.setAttribute('src', reader.result);
     console.log(reader.result);
   });
-  console.log(reader);
-  reader.readAsDataURL(selectedIMG);
-});
 
+  inputValues.profileIMG = selectedIMG;
+  reader.readAsDataURL(inputValues.profileIMG);
+});
+console.log(inputValues);
 // ABOUT ME
 aboutMeInput.addEventListener('input', e => {
   if (!aboutMeInput && aboutMeInput === null) return;
-  aboutMeOutput.textContent = aboutMeInput.value;
+
+  inputValues.aboutMeInputValue = aboutMeInput.value;
+  aboutMeOutput.textContent = inputValues.aboutMeInputValue;
 });
 
-//MAIL AND PHONE
+//PHONE
 phoneInput.addEventListener('input', e => {
-  phoneNumber.textContent = phoneInput.value;
+  inputValues.phoneNumberValue = phoneInput.value;
+  phoneNumber.textContent = inputValues.phoneNumberValue;
 
-  phoneOutput.href = `tel:+${phoneInput.value}`;
+  inputValues.phoneNumberHref = `tel:+${phoneInput.value}`;
+  phoneOutput.href = inputValues.phoneNumberHref;
 });
 
+// MAIL
 mailInput.addEventListener('input', e => {
-  mailText.textContent = mailInput.value;
+  inputValues.mailTextValue = mailInput.value;
+  mailText.textContent = inputValues.mailTextValue;
 
-  phoneOutput.href = `mailto:${mailInput.value}`;
+  inputValues.mailOutputHref = `mailto:${mailInput.value}`;
+  mailOutput.href = inputValues.mailOutputHref;
 });
