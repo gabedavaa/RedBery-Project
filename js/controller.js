@@ -1,6 +1,6 @@
 'use strict';
-////////////////////////////
-////////////////////////////
+// ////////////////////////////
+// ////////////////////////////
 
 const section1 = document.getElementById('section-1');
 const section2 = document.getElementById('section-2');
@@ -17,6 +17,10 @@ const finishBtnSection_4 = document.getElementById('finish-page-section-4');
 
 ////////////////////////////
 ////////////////////////////
+/** ONLOADING */
+window.onload = function () {
+  section1.classList.remove('hidden');
+};
 
 /** SECTION VISIBILITY */
 let sectionVisibility = {
@@ -27,8 +31,8 @@ let sectionVisibility = {
   section5: false,
 };
 
-/** ONLOADING */
-window.onload = function () {
+/** DOMContentLoaded event to wait for the HTML and CSS to finish loading before executing the JavaScript code */
+document.addEventListener('DOMContentLoaded', function () {
   let sectionVisibilityLocalStorage = JSON.parse(
     localStorage.getItem('sectionVisibility')
   );
@@ -71,7 +75,7 @@ window.onload = function () {
     section5.style.display = 'block';
     section5.classList.add('finished-editing');
   }
-};
+});
 
 /** STARTER BTN */
 starterBtnSection_1.addEventListener('click', e => {
@@ -154,10 +158,12 @@ closeBtn.addEventListener('click', e => {
 
 ////////////////////////////////////////
 ////////////////////////////////////////////
-
+const nameInputParentDIV = document.getElementById('name-input-parentDIV');
 const nameInput = document.getElementById('name-input');
-const lastNameInput = document.getElementById('lastname-input');
 const nameOutput = document.getElementById('name-output');
+
+const lastNameParentDIV = document.getElementById('lastname-input-parentDIV');
+const lastNameInput = document.getElementById('lastname-input');
 const lastNameOutput = document.getElementById('lastname-output');
 
 const mailInput = document.getElementById('mail-input');
@@ -175,20 +181,47 @@ const aboutMeOutput = document.getElementById('about-me-output');
 
 //////////////////////////////////////////////
 ///////////////////////////////////////////////
+/**INPUT VALUES IN OBJECT */
 let inputValues = {};
 
+/**Regular expression to match Georgian alphabet */
+const georgianAlphabetRegex = /^[\u10D0-\u10FA]+$/;
+
 // NAME
-nameInput.addEventListener('input', e => {
-  inputValues.nameInputValue = nameInput.value;
-  nameOutput.textContent = inputValues.nameInputValue;
-});
+const init = function () {
+  nameInput.addEventListener('input', function () {
+    inputValues.nameInputValue = this.value.trim();
+    let nameValue = inputValues.nameInputValue;
 
-// LAST-NAME
-lastNameInput.addEventListener('input', e => {
-  inputValues.lastNameInputValue = lastNameInput.value;
-  lastNameOutput.textContent = inputValues.lastNameInputValue;
-});
+    if (nameValue.length < 2 || !georgianAlphabetRegex.test(nameValue)) {
+      nameInputParentDIV.classList.add('alert--input');
+    } else {
+      nameOutput.textContent = inputValues.nameInputValue;
+      nameInputParentDIV.classList.remove('alert--input');
+      nameInputParentDIV.classList.add('valid--input');
+    }
+    localStorage.setItem('inputValues', JSON.stringify(inputValues));
+  });
 
+  // LAST-NAME
+  lastNameInput.addEventListener('input', function () {
+    inputValues.lastNameInputValue = this.value.trim();
+    let lastNameValue = inputValues.lastNameInputValue;
+
+    if (
+      lastNameValue.length < 2 ||
+      !georgianAlphabetRegex.test(lastNameValue)
+    ) {
+      lastNameParentDIV.classList.add('alert--input');
+    } else {
+      lastNameOutput.textContent = inputValues.lastNameInputValue;
+      lastNameParentDIV.classList.remove('alert--input');
+      lastNameParentDIV.classList.add('valid--input');
+    }
+    localStorage.setItem('inputValues', JSON.stringify(inputValues));
+  });
+};
+init();
 // PROFILE IMAGE
 profileImageInput.addEventListener('change', e => {
   const selectedIMG = e.target.files[0];
@@ -230,3 +263,51 @@ mailInput.addEventListener('input', e => {
   inputValues.mailOutputHref = `mailto:${mailInput.value}`;
   mailOutput.href = inputValues.mailOutputHref;
 });
+
+///////////////////////////////////
+///////////////////////////////////
+////////////////////////////////////////
+///////////////////////////////////
+// const allLinks = document.querySelectorAll('a:link');
+
+// console.log(allLinks);
+
+// allLinks.forEach(link => {
+//   link.addEventListener('click', e => {
+//     e.preventDefault();
+//     const href = link.getAttribute('href');
+//     // const hrefSection = href.split(1);
+//     const hrefSection = href.slice(1);
+//     const id = window.location.hash.slice(1);
+
+//     console.log(id);
+
+//     console.log(hrefSection);
+//     // if (hrefSection === 'section-1') {
+//     //   // section1.style.display = 'none';
+//     //   section2.style.display = 'none';
+//     //   section3.style.display = 'none';
+//     //   section4.style.display = 'none';
+//     //   section5.style.display = 'none';
+//     // }
+
+//     // if (hrefSection === 'section-2') {
+//     //   section1.style.display = 'none';
+//     //   section3.style.display = 'none';
+//     //   section4.style.display = 'none';
+//     // }
+
+//     const sectionElement = document.querySelector(href);
+//     console.log(sectionElement);
+
+//     sectionElement.scrollIntoView();
+//     console.log(hrefSection);
+//   });
+// });
+
+// window.onload = function () {
+//   const id = window.location.hash;
+//   console.log(id);
+//   if (!id) return;
+//   id.scrollIntoView();
+// };
