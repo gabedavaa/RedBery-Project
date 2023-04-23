@@ -18,6 +18,7 @@ const backtBtnSection_3 = document.getElementById('back-page-section-3');
 const nextBtnSection_3 = document.getElementById('next-page-section-3');
 const backBtnSection_4 = document.getElementById('back-page-section-4');
 const finishBtnSection_4 = document.getElementById('finish-page-section-4');
+const arrowBtnSection_1 = document.getElementById('arrow-btn-section-1');
 ////////////////////////////////////////////
 ////////////////////////////////////////////
 const nameInputParentDIV = document.getElementById('name-input-parentDIV');
@@ -119,29 +120,21 @@ document.addEventListener('DOMContentLoaded', function () {
   if (inputValues.lastNameInputValue)
     lastNameOutput.textContent = inputValues.lastNameInputValue;
 
-  if (inputValues.mailTextValue)
-    inputValues.mailOutputHref = `mailto:${inputValues.mailTextValue}`;
-  mailText.textContent = inputValues.mailTextValue;
+  if (inputValues.mailTextValue) {
+    mailText.textContent = inputValues.mailTextValue;
+    mailOutput.href = inputValues.mailOutputHref;
+  }
 
-  if (inputValues.phoneNumberValue)
-    inputValues.phoneNumberHref = `tel:+${995 + inputValues.phoneNumberValue}`;
-  phoneNumber.textContent = `+995${inputValues.phoneNumberValue}`;
+  if (inputValues.phoneNumberValue) {
+    phoneOutput.href = inputValues.phoneNumberHref;
+    phoneNumber.textContent = `+995${inputValues.phoneNumberValue}`;
+  }
 
-  // console.log(inputValues);
-  // console.log(inputValues.profileIMG);
-
-  ///
-  if (inputValues && inputValues.profileIMG) {
-    // const reader = new FileReader();
-    // reader.addEventListener('load', e => {
-    //   profileImageOutput.setAttribute('src', reader.result);
-    // });
+  if (inputValues && inputValues.profileIMG)
     profileImageOutput.src = inputValues.profileIMG;
 
-    // console.log(selectedIMG);
-    // inputValues.profileIMG = selectedIMG;
-    // reader.readAsDataURL(inputValues.profileIMG);
-  }
+  if (inputValues.aboutMeInputValue)
+    aboutMeOutput.textContent = inputValues.aboutMeInputValue;
 });
 
 /////////////////////////////////
@@ -273,11 +266,7 @@ const init = function () {
       localStorage.setItem('inputValues', JSON.stringify(inputValues));
     });
 
-    // console.log(selectedIMG);
-    // inputValues.profileIMG = selectedIMG;
     reader.readAsDataURL(selectedIMG);
-
-    // console.log(inputValues.profileIMG);
   });
 
   // ABOUT ME
@@ -317,9 +306,6 @@ const init = function () {
 
   // MAIL
   mailInput.addEventListener('input', function () {
-    /////
-    // const emailRegex = /^[a-zA-Z0-9]+@redberry$/;
-
     inputValues.mailTextValue = this.value.trim();
     let mailValue = inputValues.mailTextValue;
     inputValues.mailOutputHref = `mailto:${mailValue}`;
@@ -339,48 +325,43 @@ init();
 
 ///////////////////////////////////
 ///////////////////////////////////
-////////////////////////////////////////
 ///////////////////////////////////
-// const allLinks = document.querySelectorAll('a:link');
+///////////////////////////////////
+arrowBtnSection_1.addEventListener('click', function (e) {
+  console.log(56);
+  localStorage.removeItem('inputValues');
 
-// console.log(allLinks);
+  if (
+    !sectionVisibility.section1 &&
+    sectionVisibility.section2 &&
+    !sectionVisibility.section3 &&
+    !sectionVisibility.section4 &&
+    sectionVisibility.section5
+  ) {
+    section1.style.display = 'block';
+    section2.style.display = 'none';
+    section3.style.display = 'none';
+    section4.style.display = 'none';
+    section5.style.display = 'none';
+  }
 
-// allLinks.forEach(link => {
-//   link.addEventListener('click', e => {
-//     e.preventDefault();
-//     const href = link.getAttribute('href');
-//     // const hrefSection = href.split(1);
-//     const hrefSection = href.slice(1);
-//     const id = window.location.hash.slice(1);
+  nameOutput.textContent = 'ანზორ';
+  nameInput.value = '';
 
-//     console.log(id);
+  lastNameOutput.textContent = 'მუმლაძე';
+  lastNameInput.value = '';
 
-//     console.log(hrefSection);
-//     // if (hrefSection === 'section-1') {
-//     //   // section1.style.display = 'none';
-//     //   section2.style.display = 'none';
-//     //   section3.style.display = 'none';
-//     //   section4.style.display = 'none';
-//     //   section5.style.display = 'none';
-//     // }
+  mailText.textContent = 'anzor434@redberry.ge';
+  mailOutput.href = `mailto:anzor434@redberry.ge`;
+  mailInput.value = '';
 
-//     // if (hrefSection === 'section-2') {
-//     //   section1.style.display = 'none';
-//     //   section3.style.display = 'none';
-//     //   section4.style.display = 'none';
-//     // }
+  phoneInput.value = '';
+  phoneNumber.textContent = `+995568300123`;
+  phoneOutput.href = `tel:+${995568300123}`;
 
-//     const sectionElement = document.querySelector(href);
-//     console.log(sectionElement);
+  profileImageOutput.src = './images/author photo.png';
 
-//     sectionElement.scrollIntoView();
-//     console.log(hrefSection);
-//   });
-// });
-
-// window.onload = function () {
-//   const id = window.location.hash;
-//   console.log(id);
-//   if (!id) return;
-//   id.scrollIntoView();
-// };
+  aboutMeInput.value = '';
+  aboutMeOutput.textContent =
+    'ძალიან მიყვარს დიზაინის კეთება. დილით ადრე რომ ავდგები გამამხნევებელი ვარჯიშების მაგიერ დიზაინს ვაკეთებ.';
+});
