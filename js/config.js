@@ -1,3 +1,6 @@
+'use strict';
+///////////////////////////////////////////////
+//////////////////////////////////////
 export const NAEMLASTNAME_REGEX = /^[\u10D0-\u10FF\s]+$/;
 export const ABOUTME_REGEX = /^[ა-ჰ0-9,.!?()@#$%&*~`{}"_\s]+$/;
 export const PHONENUMBER_REGEX =

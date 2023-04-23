@@ -5,6 +5,9 @@ import { ABOUTME_REGEX } from './config.js';
 import { PHONENUMBER_REGEX } from './config.js';
 import { EMAIL_REGEX } from './config.js';
 // ////////////////////////////
+// import nameLastname from './views/nameLastname.js';
+import nameElemet from './views/nameElemet.js';
+import lastnameElemet from './views/lastnameElemet.js';
 
 const section1 = document.getElementById('section-1');
 const section2 = document.getElementById('section-2');
@@ -227,14 +230,16 @@ const init = function () {
   nameInput.addEventListener('input', function () {
     inputValues.nameInputValue = this.value.trim();
     let nameValue = inputValues.nameInputValue;
-    nameOutput.textContent = nameValue;
 
-    if (nameValue.length < 2 || !NAEMLASTNAME_REGEX.test(nameValue)) {
-      nameInputParentDIV.classList.add('alert--input');
-    } else {
-      nameInputParentDIV.classList.remove('alert--input');
-      nameInputParentDIV.classList.add('valid--input');
-    }
+    nameElemet.outputRender(nameValue);
+
+    // nameOutput.textContent = nameValue;
+    // if (nameValue.length < 2 || !NAEMLASTNAME_REGEX.test(nameValue)) {
+    //   nameInputParentDIV.classList.add('alert--input');
+    // } else {
+    //   nameInputParentDIV.classList.remove('alert--input');
+    //   nameInputParentDIV.classList.add('valid--input');
+    // }
     localStorage.setItem('inputValues', JSON.stringify(inputValues));
   });
 
@@ -242,14 +247,16 @@ const init = function () {
   lastNameInput.addEventListener('input', function () {
     inputValues.lastNameInputValue = this.value.trim();
     let lastNameValue = inputValues.lastNameInputValue;
-    lastNameOutput.textContent = lastNameValue;
 
-    if (lastNameValue.length < 2 || !NAEMLASTNAME_REGEX.test(lastNameValue)) {
-      lastNameParentDIV.classList.add('alert--input');
-    } else {
-      lastNameParentDIV.classList.remove('alert--input');
-      lastNameParentDIV.classList.add('valid--input');
-    }
+    lastnameElemet.outputRender(lastNameValue);
+
+    // lastNameOutput.textContent = lastNameValue;
+    // if (lastNameValue.length < 2 || !NAEMLASTNAME_REGEX.test(lastNameValue)) {
+    //   lastNameParentDIV.classList.add('alert--input');
+    // } else {
+    //   lastNameParentDIV.classList.remove('alert--input');
+    //   lastNameParentDIV.classList.add('valid--input');
+    // }
     localStorage.setItem('inputValues', JSON.stringify(inputValues));
   });
 
@@ -364,4 +371,105 @@ arrowBtnSection_1.addEventListener('click', function (e) {
   aboutMeInput.value = '';
   aboutMeOutput.textContent =
     'ძალიან მიყვარს დიზაინის კეთება. დილით ადრე რომ ავდგები გამამხნევებელი ვარჯიშების მაგიერ დიზაინს ვაკეთებ.';
+});
+
+////////////////////////////////
+//////////////////////////////////////
+const moreEperienceBtn = document.getElementById('more-experience-btn');
+const moreExperienceContainer = document.getElementById(
+  'more-experience-container'
+);
+
+moreEperienceBtn.addEventListener('click', function (e) {
+  let moreExperienceData = {};
+  const html = `
+    <div class="experience">
+      <!-- experience and employer -->
+      <form class="contact--form margin-top--37">
+        <div class="mail-container">
+          <label for="text">თანამდებობა</label>
+          <input id="${moreExperienceData}" type="text" required placeholder="თანამდებობა" />
+          <p>მინიმუმ 2 სიმბოლო</p>
+
+          <ion-icon
+            class="checkmark-icon hidden"
+            name="checkmark-outline"
+          ></ion-icon>
+          <ion-icon
+            class="alert-icon hidden"
+            name="alert-circle-outline"
+          ></ion-icon>
+        </div>
+
+        <div class="mail-container margin-top--31">
+          <label for="text">დამსაქმებელი</label>
+          <input type="text" required placeholder="დამსაქმებელი" />
+          <p>მინიმუმ 2 სიმბოლო</p>
+
+          <ion-icon
+            class="checkmark-icon hidden"
+            name="checkmark-outline"
+          ></ion-icon>
+          <ion-icon
+            class="alert-icon hidden"
+            name="alert-circle-outline"
+          ></ion-icon>
+        </div>
+      </form>
+
+      <!-- start date and end date -->
+      <form class="names--form margin-top--31">
+        <div class="name">
+          <label for="name">დაწყების რიცხვი</label>
+          <input id="name" type="date" class="name--input" required />
+          <ion-icon
+            class="checkmark-icon hidden"
+            name="checkmark-outline"
+          ></ion-icon>
+          <ion-icon
+            class="alert-icon hidden"
+            name="alert-circle-outline"
+          ></ion-icon>
+        </div>
+        <div class="name">
+          <label for="last-name">დამთავრების რიცხვი</label>
+          <input
+            id="last-name"
+            type="date"
+            class="name--input"
+            required
+          />
+          <ion-icon
+            class="checkmark-icon hidden"
+            name="checkmark-outline"
+          ></ion-icon>
+          <ion-icon
+            class="alert-icon hidden"
+            name="alert-circle-outline"
+          ></ion-icon>
+        </div>
+      </form>
+
+      <!-- job description -->
+      <div class="about--me job-description">
+        <label for="about-me">აღწერა</label>
+        <textarea
+          class="name--input"
+          type="text"
+          placeholder="როლი თანამდებობაზე და ზოგადი აღწერა"
+        ></textarea>
+        <ion-icon
+          class="checkmark-icon hidden"
+          name="checkmark-outline"
+        ></ion-icon>
+        <ion-icon
+          class="alert-icon hidden"
+          name="alert-circle-outline"
+        ></ion-icon>
+        <div class="border-bottom margin-top--58"></div>
+      </div>
+    </div>
+      `;
+
+  moreExperienceContainer.insertAdjacentHTML('beforebegin', html);
 });
