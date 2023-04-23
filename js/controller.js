@@ -1,5 +1,9 @@
 'use strict';
 // ////////////////////////////
+import { NAEMLASTNAME_REGEX } from './config.js';
+import { ABOUTME_REGEX } from './config.js';
+import { PHONENUMBER_REGEX } from './config.js';
+import { EMAIL_REGEX } from './config.js';
 // ////////////////////////////
 
 const section1 = document.getElementById('section-1');
@@ -166,16 +170,19 @@ const lastNameParentDIV = document.getElementById('lastname-input-parentDIV');
 const lastNameInput = document.getElementById('lastname-input');
 const lastNameOutput = document.getElementById('lastname-output');
 
+const mailInputParentDIV = document.getElementById('mail-input-parentDIV');
 const mailInput = document.getElementById('mail-input');
-const phoneInput = document.getElementById('phone-input');
 const mailOutput = document.getElementById('mail-output');
 const mailText = document.getElementById('mail-text');
+const phoneInputParentDIV = document.getElementById('phone-input-parentDIV');
+const phoneInput = document.getElementById('phone-input');
 const phoneOutput = document.getElementById('phone-output');
 const phoneNumber = document.getElementById('phone-number');
 
 const profileImageInput = document.getElementById('profile-image');
 const profileImageOutput = document.getElementById('profile-img-output');
 
+const aboutMeParentDIV = document.getElementById('aboutme-input-parentDIV');
 const aboutMeInput = document.getElementById('about-me-input');
 const aboutMeOutput = document.getElementById('about-me-output');
 
@@ -184,19 +191,20 @@ const aboutMeOutput = document.getElementById('about-me-output');
 /**INPUT VALUES IN OBJECT */
 let inputValues = {};
 
-/**Regular expression to match Georgian alphabet */
-const georgianAlphabetRegex = /^[\u10D0-\u10FA]+$/;
-
-// NAME
+// NAME AND LAST-NAME
 const init = function () {
+  // let inputValuesLocalStorage = JSON.parse(localStorage.getItem('inputValues'));
+  // if (inputValuesLocalStorage === null) return;
+  // // else sectionVisibility = inputValuesLocalStorage;
+
   nameInput.addEventListener('input', function () {
     inputValues.nameInputValue = this.value.trim();
     let nameValue = inputValues.nameInputValue;
+    nameOutput.textContent = nameValue;
 
-    if (nameValue.length < 2 || !georgianAlphabetRegex.test(nameValue)) {
+    if (nameValue.length < 2 || !NAEMLASTNAME_REGEX.test(nameValue)) {
       nameInputParentDIV.classList.add('alert--input');
     } else {
-      nameOutput.textContent = inputValues.nameInputValue;
       nameInputParentDIV.classList.remove('alert--input');
       nameInputParentDIV.classList.add('valid--input');
     }
@@ -207,62 +215,92 @@ const init = function () {
   lastNameInput.addEventListener('input', function () {
     inputValues.lastNameInputValue = this.value.trim();
     let lastNameValue = inputValues.lastNameInputValue;
+    lastNameOutput.textContent = lastNameValue;
 
-    if (
-      lastNameValue.length < 2 ||
-      !georgianAlphabetRegex.test(lastNameValue)
-    ) {
+    if (lastNameValue.length < 2 || !NAEMLASTNAME_REGEX.test(lastNameValue)) {
       lastNameParentDIV.classList.add('alert--input');
     } else {
-      lastNameOutput.textContent = inputValues.lastNameInputValue;
       lastNameParentDIV.classList.remove('alert--input');
       lastNameParentDIV.classList.add('valid--input');
     }
     localStorage.setItem('inputValues', JSON.stringify(inputValues));
   });
-};
-init();
-// PROFILE IMAGE
-profileImageInput.addEventListener('change', e => {
-  const selectedIMG = e.target.files[0];
 
-  if (!selectedIMG) profileImageOutput.setAttribute('alt', 'not found');
-  const reader = new FileReader();
+  // PROFILE IMAGE
+  profileImageInput.addEventListener('change', e => {
+    const selectedIMG = e.target.files[0];
 
-  reader.addEventListener('load', e => {
-    profileImageOutput.setAttribute('src', reader.result);
-    console.log(reader.result);
+    if (!selectedIMG) profileImageOutput.setAttribute('alt', 'not found');
+
+    const reader = new FileReader();
+
+    reader.addEventListener('load', e => {
+      profileImageOutput.setAttribute('src', reader.result);
+      console.log(reader.result);
+    });
+
+    inputValues.profileIMG = selectedIMG;
+    reader.readAsDataURL(inputValues.profileIMG);
+
+    localStorage.setItem('inputValues', JSON.stringify(inputValues));
   });
 
-  inputValues.profileIMG = selectedIMG;
-  reader.readAsDataURL(inputValues.profileIMG);
-});
-console.log(inputValues);
-// ABOUT ME
-aboutMeInput.addEventListener('input', e => {
-  if (!aboutMeInput && aboutMeInput === null) return;
+  // ABOUT ME
+  aboutMeInput.addEventListener('input', function () {
+    if (!aboutMeInput && aboutMeInput === null) return;
 
-  inputValues.aboutMeInputValue = aboutMeInput.value;
-  aboutMeOutput.textContent = inputValues.aboutMeInputValue;
-});
+    inputValues.aboutMeInputValue = this.value;
 
-//PHONE
-phoneInput.addEventListener('input', e => {
-  inputValues.phoneNumberValue = phoneInput.value;
-  phoneNumber.textContent = inputValues.phoneNumberValue;
+    let aboutMeValue = inputValues.aboutMeInputValue;
+    aboutMeOutput.textContent = aboutMeValue;
 
-  inputValues.phoneNumberHref = `tel:+${phoneInput.value}`;
-  phoneOutput.href = inputValues.phoneNumberHref;
-});
+    if (!ABOUTME_REGEX.test(aboutMeValue)) {
+      aboutMeParentDIV.classList.add('alert--input');
+    } else {
+      aboutMeParentDIV.classList.remove('alert--input');
+      aboutMeParentDIV.classList.add('valid--input');
+    }
+    localStorage.setItem('inputValues', JSON.stringify(inputValues));
+  });
 
-// MAIL
-mailInput.addEventListener('input', e => {
-  inputValues.mailTextValue = mailInput.value;
-  mailText.textContent = inputValues.mailTextValue;
+  //PHONE
+  phoneInput.addEventListener('input', function () {
+    inputValues.phoneNumberValue = this.value.trim();
+    let numberValue = inputValues.phoneNumberValue;
+    inputValues.phoneNumberHref = `tel:+${995 + numberValue}`;
+    phoneNumber.textContent = `+995${numberValue}`;
 
-  inputValues.mailOutputHref = `mailto:${mailInput.value}`;
-  mailOutput.href = inputValues.mailOutputHref;
-});
+    if (!PHONENUMBER_REGEX.test(numberValue)) {
+      phoneInputParentDIV.classList.add('alert--input');
+    } else {
+      phoneOutput.href = inputValues.phoneNumberHref;
+      phoneInputParentDIV.classList.remove('alert--input');
+      phoneInputParentDIV.classList.add('valid--input');
+    }
+    localStorage.setItem('inputValues', JSON.stringify(inputValues));
+  });
+
+  // MAIL
+  mailInput.addEventListener('input', function () {
+    /////
+    // const emailRegex = /^[a-zA-Z0-9]+@redberry$/;
+
+    inputValues.mailTextValue = this.value.trim();
+    let mailValue = inputValues.mailTextValue;
+    inputValues.mailOutputHref = `mailto:${mailValue}`;
+    mailText.textContent = mailValue;
+
+    if (!EMAIL_REGEX.test(mailValue)) {
+      mailInputParentDIV.classList.add('alert--input');
+    } else {
+      mailOutput.href = inputValues.mailOutputHref;
+      mailInputParentDIV.classList.remove('alert--input');
+      mailInputParentDIV.classList.add('valid--input');
+    }
+    localStorage.setItem('inputValues', JSON.stringify(inputValues));
+  });
+};
+init();
 
 ///////////////////////////////////
 ///////////////////////////////////
