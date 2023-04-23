@@ -18,7 +18,36 @@ const backtBtnSection_3 = document.getElementById('back-page-section-3');
 const nextBtnSection_3 = document.getElementById('next-page-section-3');
 const backBtnSection_4 = document.getElementById('back-page-section-4');
 const finishBtnSection_4 = document.getElementById('finish-page-section-4');
+////////////////////////////////////////////
+////////////////////////////////////////////
+const nameInputParentDIV = document.getElementById('name-input-parentDIV');
+const nameInput = document.getElementById('name-input');
+const nameOutput = document.getElementById('name-output');
 
+const lastNameParentDIV = document.getElementById('lastname-input-parentDIV');
+const lastNameInput = document.getElementById('lastname-input');
+const lastNameOutput = document.getElementById('lastname-output');
+
+const mailInputParentDIV = document.getElementById('mail-input-parentDIV');
+const mailInput = document.getElementById('mail-input');
+const mailOutput = document.getElementById('mail-output');
+const mailText = document.getElementById('mail-text');
+const phoneInputParentDIV = document.getElementById('phone-input-parentDIV');
+const phoneInput = document.getElementById('phone-input');
+const phoneOutput = document.getElementById('phone-output');
+const phoneNumber = document.getElementById('phone-number');
+
+const profileImageInput = document.getElementById('profile-image');
+const profileImageOutput = document.getElementById('profile-img-output');
+
+const aboutMeParentDIV = document.getElementById('aboutme-input-parentDIV');
+const aboutMeInput = document.getElementById('about-me-input');
+const aboutMeOutput = document.getElementById('about-me-output');
+
+//////////////////////////////////////////////
+///////////////////////////////////////////////
+/**INPUT VALUES IN OBJECT */
+let inputValues = {};
 ////////////////////////////
 ////////////////////////////
 /** ONLOADING */
@@ -79,8 +108,45 @@ document.addEventListener('DOMContentLoaded', function () {
     section5.style.display = 'block';
     section5.classList.add('finished-editing');
   }
+
+  let inputValuesLocalStorage = JSON.parse(localStorage.getItem('inputValues'));
+  if (inputValuesLocalStorage === null) return;
+  else inputValues = inputValuesLocalStorage;
+
+  if (inputValues.nameInputValue)
+    nameOutput.textContent = inputValues.nameInputValue;
+
+  if (inputValues.lastNameInputValue)
+    lastNameOutput.textContent = inputValues.lastNameInputValue;
+
+  if (inputValues.mailTextValue)
+    inputValues.mailOutputHref = `mailto:${inputValues.mailTextValue}`;
+  mailText.textContent = inputValues.mailTextValue;
+
+  if (inputValues.phoneNumberValue)
+    inputValues.phoneNumberHref = `tel:+${995 + inputValues.phoneNumberValue}`;
+  phoneNumber.textContent = `+995${inputValues.phoneNumberValue}`;
+
+  // console.log(inputValues);
+  // console.log(inputValues.profileIMG);
+
+  ///
+  if (inputValues && inputValues.profileIMG) {
+    // const reader = new FileReader();
+    // reader.addEventListener('load', e => {
+    //   profileImageOutput.setAttribute('src', reader.result);
+    // });
+    profileImageOutput.src = inputValues.profileIMG;
+
+    // console.log(selectedIMG);
+    // inputValues.profileIMG = selectedIMG;
+    // reader.readAsDataURL(inputValues.profileIMG);
+  }
 });
 
+/////////////////////////////////
+///////////////////////////////
+////////////////////////////////
 /** STARTER BTN */
 starterBtnSection_1.addEventListener('click', e => {
   section1.style.display = 'none';
@@ -162,41 +228,9 @@ closeBtn.addEventListener('click', e => {
 
 ////////////////////////////////////////
 ////////////////////////////////////////////
-const nameInputParentDIV = document.getElementById('name-input-parentDIV');
-const nameInput = document.getElementById('name-input');
-const nameOutput = document.getElementById('name-output');
-
-const lastNameParentDIV = document.getElementById('lastname-input-parentDIV');
-const lastNameInput = document.getElementById('lastname-input');
-const lastNameOutput = document.getElementById('lastname-output');
-
-const mailInputParentDIV = document.getElementById('mail-input-parentDIV');
-const mailInput = document.getElementById('mail-input');
-const mailOutput = document.getElementById('mail-output');
-const mailText = document.getElementById('mail-text');
-const phoneInputParentDIV = document.getElementById('phone-input-parentDIV');
-const phoneInput = document.getElementById('phone-input');
-const phoneOutput = document.getElementById('phone-output');
-const phoneNumber = document.getElementById('phone-number');
-
-const profileImageInput = document.getElementById('profile-image');
-const profileImageOutput = document.getElementById('profile-img-output');
-
-const aboutMeParentDIV = document.getElementById('aboutme-input-parentDIV');
-const aboutMeInput = document.getElementById('about-me-input');
-const aboutMeOutput = document.getElementById('about-me-output');
-
-//////////////////////////////////////////////
-///////////////////////////////////////////////
-/**INPUT VALUES IN OBJECT */
-let inputValues = {};
 
 // NAME AND LAST-NAME
 const init = function () {
-  // let inputValuesLocalStorage = JSON.parse(localStorage.getItem('inputValues'));
-  // if (inputValuesLocalStorage === null) return;
-  // // else sectionVisibility = inputValuesLocalStorage;
-
   nameInput.addEventListener('input', function () {
     inputValues.nameInputValue = this.value.trim();
     let nameValue = inputValues.nameInputValue;
@@ -227,22 +261,23 @@ const init = function () {
   });
 
   // PROFILE IMAGE
-  profileImageInput.addEventListener('change', e => {
+  profileImageInput.addEventListener('change', function (e) {
     const selectedIMG = e.target.files[0];
 
     if (!selectedIMG) profileImageOutput.setAttribute('alt', 'not found');
 
     const reader = new FileReader();
-
     reader.addEventListener('load', e => {
-      profileImageOutput.setAttribute('src', reader.result);
-      console.log(reader.result);
+      profileImageOutput.src = reader.result;
+      inputValues.profileIMG = reader.result;
+      localStorage.setItem('inputValues', JSON.stringify(inputValues));
     });
 
-    inputValues.profileIMG = selectedIMG;
-    reader.readAsDataURL(inputValues.profileIMG);
+    // console.log(selectedIMG);
+    // inputValues.profileIMG = selectedIMG;
+    reader.readAsDataURL(selectedIMG);
 
-    localStorage.setItem('inputValues', JSON.stringify(inputValues));
+    // console.log(inputValues.profileIMG);
   });
 
   // ABOUT ME
