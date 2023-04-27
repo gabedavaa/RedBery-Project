@@ -196,9 +196,14 @@
           <div class="experience">
             <!-- experience and employer -->
             <form class="contact--form margin-top--77">
-              <div class="mail-container">
+              <div class="mail-container" id="position-input-parentDIV">
                 <label for="text">თანამდებობა</label>
-                <input type="text" required placeholder="თანამდებობა" />
+                <input
+                  id="position-input"
+                  type="text"
+                  required
+                  placeholder="თანამდებობა"
+                />
                 <p>მინიმუმ 2 სიმბოლო</p>
 
                 <ion-icon
@@ -493,7 +498,7 @@
           <!-- experience section -->
           <div class="experience-section">
             <h3>გამოცდილება</h3>
-            <h4>React Native Developer, Microsoft</h4>
+            <h4 id="position-output">React Native Developer, Microsoft</h4>
             <h5>2020-09-23 - 2020-09-23</h5>
             <h6>
               Experienced Javascript Native Developer with 5 years in the

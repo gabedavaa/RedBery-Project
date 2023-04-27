@@ -1,13 +1,18 @@
 'use strict';
 // ////////////////////////////
+// import * as model from './model.js';
 import { NAEMLASTNAME_REGEX } from './config.js';
 import { ABOUTME_REGEX } from './config.js';
 import { PHONENUMBER_REGEX } from './config.js';
 import { EMAIL_REGEX } from './config.js';
 // ////////////////////////////
 // import nameLastname from './views/nameLastname.js';
-import nameElemet from './views/nameElemet.js';
-import lastnameElemet from './views/lastnameElemet.js';
+import nameElemet from './views/genInfo/nameElemet.js';
+import lastnameElemet from './views/genInfo/lastnameElemet.js';
+import aboutMeelment from './views/genInfo/aboutMeelment.js';
+import phoneElement from './views/genInfo/phoneElement.js';
+import mailElement from './views/genInfo/mailElement.js';
+//////////////////////////////////////////////////
 
 const section1 = document.getElementById('section-1');
 const section2 = document.getElementById('section-2');
@@ -24,6 +29,7 @@ const finishBtnSection_4 = document.getElementById('finish-page-section-4');
 const arrowBtnSection_1 = document.getElementById('arrow-btn-section-1');
 ////////////////////////////////////////////
 ////////////////////////////////////////////
+/** GENERAL INFO */
 const nameInputParentDIV = document.getElementById('name-input-parentDIV');
 const nameInput = document.getElementById('name-input');
 const nameOutput = document.getElementById('name-output');
@@ -48,16 +54,26 @@ const aboutMeParentDIV = document.getElementById('aboutme-input-parentDIV');
 const aboutMeInput = document.getElementById('about-me-input');
 const aboutMeOutput = document.getElementById('about-me-output');
 
-//////////////////////////////////////////////
-///////////////////////////////////////////////
-/**INPUT VALUES IN OBJECT */
-let inputValues = {};
-////////////////////////////
+/** WORKING EXPERIENCE */
+const positionInputParentDIV = document.getElementById(
+  'position-input-parentDIV'
+);
+const positionInput = document.getElementById('position-input');
+const positionOutput = document.getElementById('position-output');
+
+////////////////////////////////////////////
 ////////////////////////////
 /** ONLOADING */
 window.onload = function () {
   section1.classList.remove('hidden');
 };
+///////////////////////////////////////////
+
+//////////////////////////////////////////////
+///////////////////////////////////////////////
+/**INPUT VALUES IN OBJECT */
+let inputValues = {};
+////////////////////////////
 
 /** SECTION VISIBILITY */
 let sectionVisibility = {
@@ -233,13 +249,6 @@ const init = function () {
 
     nameElemet.outputRender(nameValue);
 
-    // nameOutput.textContent = nameValue;
-    // if (nameValue.length < 2 || !NAEMLASTNAME_REGEX.test(nameValue)) {
-    //   nameInputParentDIV.classList.add('alert--input');
-    // } else {
-    //   nameInputParentDIV.classList.remove('alert--input');
-    //   nameInputParentDIV.classList.add('valid--input');
-    // }
     localStorage.setItem('inputValues', JSON.stringify(inputValues));
   });
 
@@ -250,13 +259,6 @@ const init = function () {
 
     lastnameElemet.outputRender(lastNameValue);
 
-    // lastNameOutput.textContent = lastNameValue;
-    // if (lastNameValue.length < 2 || !NAEMLASTNAME_REGEX.test(lastNameValue)) {
-    //   lastNameParentDIV.classList.add('alert--input');
-    // } else {
-    //   lastNameParentDIV.classList.remove('alert--input');
-    //   lastNameParentDIV.classList.add('valid--input');
-    // }
     localStorage.setItem('inputValues', JSON.stringify(inputValues));
   });
 
@@ -281,16 +283,9 @@ const init = function () {
     if (!aboutMeInput && aboutMeInput === null) return;
 
     inputValues.aboutMeInputValue = this.value;
-
     let aboutMeValue = inputValues.aboutMeInputValue;
-    aboutMeOutput.textContent = aboutMeValue;
+    aboutMeelment.describeRender(aboutMeValue);
 
-    if (!ABOUTME_REGEX.test(aboutMeValue)) {
-      aboutMeParentDIV.classList.add('alert--input');
-    } else {
-      aboutMeParentDIV.classList.remove('alert--input');
-      aboutMeParentDIV.classList.add('valid--input');
-    }
     localStorage.setItem('inputValues', JSON.stringify(inputValues));
   });
 
@@ -298,16 +293,12 @@ const init = function () {
   phoneInput.addEventListener('input', function () {
     inputValues.phoneNumberValue = this.value.trim();
     let numberValue = inputValues.phoneNumberValue;
-    inputValues.phoneNumberHref = `tel:+${995 + numberValue}`;
-    phoneNumber.textContent = `+995${numberValue}`;
 
-    if (!PHONENUMBER_REGEX.test(numberValue)) {
-      phoneInputParentDIV.classList.add('alert--input');
-    } else {
-      phoneOutput.href = inputValues.phoneNumberHref;
-      phoneInputParentDIV.classList.remove('alert--input');
-      phoneInputParentDIV.classList.add('valid--input');
-    }
+    inputValues.phoneNumberHref = `tel:${+995 + numberValue}`;
+    let hrefValue = inputValues.phoneNumberHref;
+
+    phoneElement.phoneEmailRender(numberValue, hrefValue);
+
     localStorage.setItem('inputValues', JSON.stringify(inputValues));
   });
 
@@ -315,16 +306,13 @@ const init = function () {
   mailInput.addEventListener('input', function () {
     inputValues.mailTextValue = this.value.trim();
     let mailValue = inputValues.mailTextValue;
-    inputValues.mailOutputHref = `mailto:${mailValue}`;
-    mailText.textContent = mailValue;
 
-    if (!EMAIL_REGEX.test(mailValue)) {
-      mailInputParentDIV.classList.add('alert--input');
-    } else {
-      mailOutput.href = inputValues.mailOutputHref;
-      mailInputParentDIV.classList.remove('alert--input');
-      mailInputParentDIV.classList.add('valid--input');
-    }
+    inputValues.mailOutputHref = `mailto:${mailValue}`;
+
+    let hrefValue = inputValues.mailOutputHref;
+
+    mailElement.phoneEmailRender(mailValue, hrefValue);
+
     localStorage.setItem('inputValues', JSON.stringify(inputValues));
   });
 };
@@ -350,6 +338,16 @@ arrowBtnSection_1.addEventListener('click', function (e) {
     section3.style.display = 'none';
     section4.style.display = 'none';
     section5.style.display = 'none';
+
+    sectionVisibility.section1 = true;
+    sectionVisibility.section2 = false;
+    sectionVisibility.section3 = false;
+    sectionVisibility.section4 = false;
+    sectionVisibility.section5 = false;
+    localStorage.setItem(
+      'sectionVisibility',
+      JSON.stringify(sectionVisibility)
+    );
   }
 
   nameOutput.textContent = 'ანზორ';
@@ -364,7 +362,7 @@ arrowBtnSection_1.addEventListener('click', function (e) {
 
   phoneInput.value = '';
   phoneNumber.textContent = `+995568300123`;
-  phoneOutput.href = `tel:+${995568300123}`;
+  phoneOutput.href = `tel:${+995568300123}`;
 
   profileImageOutput.src = './images/author photo.png';
 
@@ -380,15 +378,22 @@ const moreExperienceContainer = document.getElementById(
   'more-experience-container'
 );
 
+let moreExperienceData = {};
 moreEperienceBtn.addEventListener('click', function (e) {
-  let moreExperienceData = {};
+  const myDate = new Date();
+  const dateNum = myDate.getTime();
+  const last10Digits = dateNum.toString().slice(-10);
+
+  console.log(last10Digits);
+
+  // document.querySelector(``);
   const html = `
-    <div class="experience">
+    <div class="experience"  id="">
       <!-- experience and employer -->
       <form class="contact--form margin-top--37">
         <div class="mail-container">
           <label for="text">თანამდებობა</label>
-          <input id="${moreExperienceData}" type="text" required placeholder="თანამდებობა" />
+          <input id="pos-input--${last10Digits}" type="text" required placeholder="თანამდებობა" />
           <p>მინიმუმ 2 სიმბოლო</p>
 
           <ion-icon

@@ -1,6 +1,6 @@
 'use strict';
 /////////////////////////////////
-import View from './view.js';
+import View from '../view.js';
 /////////////////////////////////
 
 class LastnameElement extends View {
