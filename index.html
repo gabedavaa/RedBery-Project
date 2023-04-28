@@ -216,9 +216,17 @@
                 ></ion-icon>
               </div>
 
-              <div class="mail-container margin-top--31">
+              <div
+                class="mail-container margin-top--31"
+                id="employer-input-parentDIV"
+              >
                 <label for="text">დამსაქმებელი</label>
-                <input type="text" required placeholder="დამსაქმებელი" />
+                <input
+                  id="employer-input"
+                  type="text"
+                  required
+                  placeholder="დამსაქმებელი"
+                />
                 <p>მინიმუმ 2 სიმბოლო</p>
 
                 <ion-icon
@@ -234,9 +242,14 @@
 
             <!-- start date and end date -->
             <form class="names--form margin-top--31">
-              <div class="name">
+              <div class="name" id="startDate-input-parentDIV">
                 <label for="name">დაწყების რიცხვი</label>
-                <input id="name" type="date" class="name--input" required />
+                <input
+                  id="startDate-input"
+                  type="date"
+                  class="name--input"
+                  required
+                />
                 <ion-icon
                   class="checkmark-icon hidden"
                   name="checkmark-outline"
@@ -246,10 +259,10 @@
                   name="alert-circle-outline"
                 ></ion-icon>
               </div>
-              <div class="name">
+              <div class="name" id="endDate-input-parentDIV">
                 <label for="last-name">დამთავრების რიცხვი</label>
                 <input
-                  id="last-name"
+                  id="endDate-input"
                   type="date"
                   class="name--input"
                   required
@@ -266,12 +279,17 @@
             </form>
 
             <!-- job description -->
-            <div class="about--me job-description">
+            <div
+              class="about--me job-description"
+              id="aboutExp-input-parentDIV"
+            >
               <label for="about-me">აღწერა</label>
               <textarea
+                id="about-exp-input"
                 class="name--input"
                 type="text"
                 placeholder="როლი თანამდებობაზე და ზოგადი აღწერა"
+                required
               ></textarea>
               <ion-icon
                 class="checkmark-icon hidden"
@@ -498,9 +516,15 @@
           <!-- experience section -->
           <div class="experience-section">
             <h3>გამოცდილება</h3>
-            <h4 id="position-output">React Native Developer, Microsoft</h4>
-            <h5>2020-09-23 - 2020-09-23</h5>
-            <h6>
+            <h4>
+              <span id="position-output">React Native Developer</span>,
+              <span id="employer-output">Microsoft</span>
+            </h4>
+            <h5>
+              <span id="startDate-output">2020-09-23</span> -
+              <span id="endDate-output">2020-09-23</span>
+            </h5>
+            <h6 id="about-exp-output">
               Experienced Javascript Native Developer with 5 years in the
               industry. proficient withreact. Used problem-solving aptitude to
               encahge application performance by 14%.created data visualisation

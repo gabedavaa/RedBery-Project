@@ -47,4 +47,17 @@ export default class View {
       this._inputParentDIV.classList.add('valid--input');
     }
   }
+
+  startEndDateRender(data) {
+    this._data = data;
+
+    this._output.textContent = this._data;
+
+    if (this._data === '') {
+      this._inputParentDIV.classList.add('alert--input');
+    } else {
+      this._inputParentDIV.classList.remove('alert--input');
+      this._inputParentDIV.classList.add('valid--input');
+    }
+  }
 }
