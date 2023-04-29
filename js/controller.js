@@ -10,6 +10,7 @@ import employerElement from './views/experience/employerElement.js';
 import startEndDate from './views/experience/startEndDate.js';
 import aboutExpElement from './views/experience/aboutExpElement.js';
 import moreExpEmpElement from './views/experience/moreExpEmpElement.js';
+import markupExpElement from './views/experience/markupExpElement.js';
 //////////////////////////////////////////////////
 
 const section1 = document.getElementById('section-1');
@@ -94,6 +95,8 @@ window.onload = function () {
 ///////////////////////////////////////////////
 /**INPUT VALUES IN OBJECT */
 let inputValues = {};
+// Data More Experience
+let moreExperienceData = [];
 
 ////////////////////////////
 
@@ -479,140 +482,28 @@ arrowBtnSection_1.addEventListener('click', function (e) {
 });
 
 ////////////////////////////////
+/** ADDING MORE EXPERIENCE */
 //////////////////////////////////////
 const moreEperienceBtn = document.getElementById('more-experience-btn');
 const moreExperienceContainer = document.getElementById(
   'more-experience-container'
 );
-
 const studyContainer = document.getElementById('study');
 
-let moreExperienceData = [];
-
+// More Experience BTN
 moreEperienceBtn.addEventListener('click', function (e) {
   const myDate = new Date();
   const dateNum = myDate.getTime();
   const last10Digits = dateNum.toString().slice(-10);
 
-  console.log(last10Digits);
+  // Markup HTML
+  markupExpElement.markupExp(
+    last10Digits,
+    moreExperienceContainer,
+    studyContainer
+  );
 
-  // document.querySelector(``);
-  const html = `
-    <div class="experience"  id="">
-      <!-- experience and employer -->
-      <form class="contact--form margin-top--37">
-        <div class="mail-container" id="position-input-parentDIV--${last10Digits}">
-          <label for="text">თანამდებობა</label>
-          <input id="position-input--${last10Digits}" type="text" required placeholder="თანამდებობა" />
-          <p>მინიმუმ 2 სიმბოლო</p>
-
-          <ion-icon
-            class="checkmark-icon hidden"
-            name="checkmark-outline"
-          ></ion-icon>
-          <ion-icon
-            class="alert-icon hidden"
-            name="alert-circle-outline"
-          ></ion-icon>
-        </div>
-
-        <div class="mail-container margin-top--31" id="employer-input-parentDIV--${last10Digits}">
-          <label for="text">დამსაქმებელი</label>
-          <input type="text" id="employer-input--${last10Digits}" required placeholder="დამსაქმებელი" />
-          <p>მინიმუმ 2 სიმბოლო</p>
-
-          <ion-icon
-            class="checkmark-icon hidden"
-            name="checkmark-outline"
-          ></ion-icon>
-          <ion-icon
-            class="alert-icon hidden"
-            name="alert-circle-outline"
-          ></ion-icon>
-        </div>
-      </form>
-
-      <!-- start date and end date -->
-      <form class="names--form margin-top--31">
-        <div class="name" id="startDate-input-parentDIV--${last10Digits}">
-          <label for="name">დაწყების რიცხვი</label>
-          <input id="startDate-input--${last10Digits}" type="date" class="name--input" required />
-          <ion-icon
-            class="checkmark-icon hidden"
-            name="checkmark-outline"
-          ></ion-icon>
-          <ion-icon
-            class="alert-icon hidden"
-            name="alert-circle-outline"
-          ></ion-icon>
-        </div>
-        <div class="name" id="endDate-input-parentDIV--${last10Digits}">
-          <label for="last-name">დამთავრების რიცხვი</label>
-          <input
-            id="endDate-input--${last10Digits}"
-            type="date"
-            class="name--input"
-            required
-          />
-          <ion-icon
-            class="checkmark-icon hidden"
-            name="checkmark-outline"
-          ></ion-icon>
-          <ion-icon
-            class="alert-icon hidden"
-            name="alert-circle-outline"
-          ></ion-icon>
-        </div>
-      </form>
-
-      <!-- job description -->
-      <div class="about--me job-description" id="aboutExp-input-parentDIV--${last10Digits}">
-        <label for="about-me">აღწერა</label>
-        <textarea
-          class="name--input"
-          id="about-exp-input--${last10Digits}"
-          type="text"
-          placeholder="როლი თანამდებობაზე და ზოგადი აღწერა"
-          required
-        ></textarea>
-        <ion-icon
-          class="checkmark-icon hidden"
-          name="checkmark-outline"
-        ></ion-icon>
-        <ion-icon
-          class="alert-icon hidden"
-          name="alert-circle-outline"
-        ></ion-icon>
-        <div class="border-bottom margin-top--58"></div>
-      </div>
-    </div>
-      `;
-
-  const htmlView = `
-      <!-- experience section -->
-      <div class="experience-section">
-        <h3>გამოცდილება</h3>
-        <h4>
-          <span id="position-output--${last10Digits}">React Native Developer</span>,
-          <span id="employer-output--${last10Digits}">Microsoft</span>
-        </h4>
-        <h5>
-          <span id="startDate-output--${last10Digits}">2020-09-23</span> -
-          <span id="endDate-output--${last10Digits}">2020-09-23</span>
-        </h5>
-        <h6 id="about-exp-output--${last10Digits}">
-          Experienced Javascript Native Developer with 5 years in the
-          industry. proficient withreact. Used problem-solving aptitude to
-          encahge application performance by 14%.created data visualisation
-          tools and integrated designs.
-        </h6>
-        <div class="border-bottom margin-top--31"></div>
-      </div>
-      `;
-
-  moreExperienceContainer.insertAdjacentHTML('beforebegin', html);
-  studyContainer.insertAdjacentHTML('beforebegin', htmlView);
-
+  // Saving data
   moreExperienceData.push({
     id: last10Digits,
     positionDiv: `position-input-parentDIV--${last10Digits}`,
@@ -633,7 +524,9 @@ moreEperienceBtn.addEventListener('click', function (e) {
   });
 
   /////////////////////////////////////////////
+  // TO GET VALUE
   moreExperienceData.forEach((data, i) => {
+    // POSITION
     document
       .getElementById(moreExperienceData[i].positionInput)
       .addEventListener('input', function () {
@@ -653,6 +546,7 @@ moreEperienceBtn.addEventListener('click', function (e) {
         console.log(moreExperienceData);
       });
 
+    // EMPLOYER
     document
       .getElementById(moreExperienceData[i].employerInput)
       .addEventListener('input', function () {
@@ -672,6 +566,7 @@ moreEperienceBtn.addEventListener('click', function (e) {
         console.log(moreExperienceData);
       });
 
+    // START DATE
     document
       .getElementById(moreExperienceData[i].starterInput)
       .addEventListener('input', function () {
@@ -688,6 +583,7 @@ moreEperienceBtn.addEventListener('click', function (e) {
         );
       });
 
+    // END DATE
     document
       .getElementById(moreExperienceData[i].endDateInput)
       .addEventListener('input', function () {
@@ -704,6 +600,7 @@ moreEperienceBtn.addEventListener('click', function (e) {
         );
       });
 
+    // DESCRIPTION
     document
       .getElementById(moreExperienceData[i].aboutExpInput)
       .addEventListener('input', function () {
