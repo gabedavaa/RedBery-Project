@@ -1,6 +1,5 @@
 'use strict';
 // ////////////////////////////
-// import nameLastname from './views/nameLastname.js';
 import nameElemet from './views/genInfo/nameElemet.js';
 import lastnameElemet from './views/genInfo/lastnameElemet.js';
 import aboutMeelment from './views/genInfo/aboutMeelment.js';
@@ -8,9 +7,9 @@ import phoneElement from './views/genInfo/phoneElement.js';
 import mailElement from './views/genInfo/mailElement.js';
 import positionElement from './views/experience/positionElement.js';
 import employerElement from './views/experience/employerElement.js';
-import expStartDate from './views/experience/expStartDate.js';
-import expEndDate from './views/experience/expEndDate.js';
+import startEndDate from './views/experience/startEndDate.js';
 import aboutExpElement from './views/experience/aboutExpElement.js';
+import moreExpEmpElement from './views/experience/moreExpEmpElement.js';
 //////////////////////////////////////////////////
 
 const section1 = document.getElementById('section-1');
@@ -70,18 +69,19 @@ const startDateInputParentDIV = document.getElementById(
   'startDate-input-parentDIV'
 );
 const startDateInput = document.getElementById('startDate-input');
+const startDateOutput = document.getElementById('startDate-output');
 
 const endDateInputParentDIV = document.getElementById(
   'endDate-input-parentDIV'
 );
 const endDateInput = document.getElementById('endDate-input');
+const endDateOutput = document.getElementById('endDate-output');
 
 const aboutExperienceParentDIV = document.getElementById(
   'aboutExp-input-parentDIV'
 );
 const aboutExperienceInput = document.getElementById('about-exp-input');
 const aboutExperienceOutput = document.getElementById('about-exp-output');
-
 ////////////////////////////////////////////
 ////////////////////////////
 /** ONLOADING */
@@ -94,6 +94,7 @@ window.onload = function () {
 ///////////////////////////////////////////////
 /**INPUT VALUES IN OBJECT */
 let inputValues = {};
+
 ////////////////////////////
 
 /** SECTION VISIBILITY */
@@ -154,6 +155,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (inputValuesLocalStorage === null) return;
   else inputValues = inputValuesLocalStorage;
 
+  // GENERAL INFO
   if (inputValues.nameInputValue)
     nameOutput.textContent = inputValues.nameInputValue;
 
@@ -175,6 +177,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (inputValues.aboutMeInputValue)
     aboutMeOutput.textContent = inputValues.aboutMeInputValue;
+
+  // EXPERIENCE INFO
+  if (inputValues.positionValue)
+    positionOutput.textContent = inputValues.positionValue;
+
+  if (inputValues.employerValue)
+    employerOutput.textContent = inputValues.employerValue;
+
+  if (inputValues.employerValue)
+    employerOutput.textContent = inputValues.employerValue;
+
+  if (inputValues.expStartDateValue)
+    startDateOutput.textContent = inputValues.expStartDateValue;
+
+  if (inputValues.expEndDateValue)
+    endDateOutput.textContent = inputValues.expEndDateValue;
+
+  if (inputValues.aboutExpInputValue)
+    aboutExperienceOutput.textContent = inputValues.aboutExpInputValue;
 });
 
 /////////////////////////////////
@@ -365,16 +386,25 @@ const init = function () {
     inputValues.expStartDateValue = this.value;
     let startValue = inputValues.expStartDateValue;
 
-    expStartDate.startEndDateRender(startValue);
+    startEndDate.moreStartEndDateRender(
+      startValue,
+      startDateOutput,
+      startDateInputParentDIV
+    );
     localStorage.setItem('inputValues', JSON.stringify(inputValues));
   });
 
   // END DATE EXPERIENCE
   endDateInput.addEventListener('change', function () {
     inputValues.expEndDateValue = this.value;
-    let startValue = inputValues.expEndDateValue;
+    let endValue = inputValues.expEndDateValue;
 
-    expEndDate.startEndDateRender(startValue);
+    startEndDate.moreStartEndDateRender(
+      endValue,
+      endDateOutput,
+      endDateInputParentDIV
+    );
+
     localStorage.setItem('inputValues', JSON.stringify(inputValues));
   });
 
@@ -384,7 +414,12 @@ const init = function () {
 
     inputValues.aboutExpInputValue = this.value;
     let aboutExpValue = inputValues.aboutExpInputValue;
-    aboutExpElement.describeRender(aboutExpValue);
+
+    aboutExpElement.moreDescribeRender(
+      aboutExpValue,
+      aboutExperienceOutput,
+      aboutExperienceParentDIV
+    );
 
     localStorage.setItem('inputValues', JSON.stringify(inputValues));
   });
@@ -396,7 +431,6 @@ init();
 ///////////////////////////////////
 ///////////////////////////////////
 arrowBtnSection_1.addEventListener('click', function (e) {
-  console.log(56);
   localStorage.removeItem('inputValues');
 
   if (
@@ -446,108 +480,245 @@ arrowBtnSection_1.addEventListener('click', function (e) {
 
 ////////////////////////////////
 //////////////////////////////////////
-// const moreEperienceBtn = document.getElementById('more-experience-btn');
-// const moreExperienceContainer = document.getElementById(
-//   'more-experience-container'
-// );
+const moreEperienceBtn = document.getElementById('more-experience-btn');
+const moreExperienceContainer = document.getElementById(
+  'more-experience-container'
+);
 
-// let moreExperienceData = {};
-// moreEperienceBtn.addEventListener('click', function (e) {
-//   const myDate = new Date();
-//   const dateNum = myDate.getTime();
-//   const last10Digits = dateNum.toString().slice(-10);
+const studyContainer = document.getElementById('study');
 
-//   console.log(last10Digits);
+let moreExperienceData = [];
 
-//   // document.querySelector(``);
-//   const html = `
-//     <div class="experience"  id="">
-//       <!-- experience and employer -->
-//       <form class="contact--form margin-top--37">
-//         <div class="mail-container">
-//           <label for="text">თანამდებობა</label>
-//           <input id="pos-input--${last10Digits}" type="text" required placeholder="თანამდებობა" />
-//           <p>მინიმუმ 2 სიმბოლო</p>
+moreEperienceBtn.addEventListener('click', function (e) {
+  const myDate = new Date();
+  const dateNum = myDate.getTime();
+  const last10Digits = dateNum.toString().slice(-10);
 
-//           <ion-icon
-//             class="checkmark-icon hidden"
-//             name="checkmark-outline"
-//           ></ion-icon>
-//           <ion-icon
-//             class="alert-icon hidden"
-//             name="alert-circle-outline"
-//           ></ion-icon>
-//         </div>
+  console.log(last10Digits);
 
-//         <div class="mail-container margin-top--31">
-//           <label for="text">დამსაქმებელი</label>
-//           <input type="text" required placeholder="დამსაქმებელი" />
-//           <p>მინიმუმ 2 სიმბოლო</p>
+  // document.querySelector(``);
+  const html = `
+    <div class="experience"  id="">
+      <!-- experience and employer -->
+      <form class="contact--form margin-top--37">
+        <div class="mail-container" id="position-input-parentDIV--${last10Digits}">
+          <label for="text">თანამდებობა</label>
+          <input id="position-input--${last10Digits}" type="text" required placeholder="თანამდებობა" />
+          <p>მინიმუმ 2 სიმბოლო</p>
 
-//           <ion-icon
-//             class="checkmark-icon hidden"
-//             name="checkmark-outline"
-//           ></ion-icon>
-//           <ion-icon
-//             class="alert-icon hidden"
-//             name="alert-circle-outline"
-//           ></ion-icon>
-//         </div>
-//       </form>
+          <ion-icon
+            class="checkmark-icon hidden"
+            name="checkmark-outline"
+          ></ion-icon>
+          <ion-icon
+            class="alert-icon hidden"
+            name="alert-circle-outline"
+          ></ion-icon>
+        </div>
 
-//       <!-- start date and end date -->
-//       <form class="names--form margin-top--31">
-//         <div class="name">
-//           <label for="name">დაწყების რიცხვი</label>
-//           <input id="name" type="date" class="name--input" required />
-//           <ion-icon
-//             class="checkmark-icon hidden"
-//             name="checkmark-outline"
-//           ></ion-icon>
-//           <ion-icon
-//             class="alert-icon hidden"
-//             name="alert-circle-outline"
-//           ></ion-icon>
-//         </div>
-//         <div class="name">
-//           <label for="last-name">დამთავრების რიცხვი</label>
-//           <input
-//             id="last-name"
-//             type="date"
-//             class="name--input"
-//             required
-//           />
-//           <ion-icon
-//             class="checkmark-icon hidden"
-//             name="checkmark-outline"
-//           ></ion-icon>
-//           <ion-icon
-//             class="alert-icon hidden"
-//             name="alert-circle-outline"
-//           ></ion-icon>
-//         </div>
-//       </form>
+        <div class="mail-container margin-top--31" id="employer-input-parentDIV--${last10Digits}">
+          <label for="text">დამსაქმებელი</label>
+          <input type="text" id="employer-input--${last10Digits}" required placeholder="დამსაქმებელი" />
+          <p>მინიმუმ 2 სიმბოლო</p>
 
-//       <!-- job description -->
-//       <div class="about--me job-description">
-//         <label for="about-me">აღწერა</label>
-//         <textarea
-//           class="name--input"
-//           type="text"
-//           placeholder="როლი თანამდებობაზე და ზოგადი აღწერა"
-//         ></textarea>
-//         <ion-icon
-//           class="checkmark-icon hidden"
-//           name="checkmark-outline"
-//         ></ion-icon>
-//         <ion-icon
-//           class="alert-icon hidden"
-//           name="alert-circle-outline"
-//         ></ion-icon>
-//         <div class="border-bottom margin-top--58"></div>
-//       </div>
-//     </div>
-//       `;
+          <ion-icon
+            class="checkmark-icon hidden"
+            name="checkmark-outline"
+          ></ion-icon>
+          <ion-icon
+            class="alert-icon hidden"
+            name="alert-circle-outline"
+          ></ion-icon>
+        </div>
+      </form>
 
-//   moreExperienceContainer.insertAdjacentHTML('beforebegin', html);
-// });
+      <!-- start date and end date -->
+      <form class="names--form margin-top--31">
+        <div class="name" id="startDate-input-parentDIV--${last10Digits}">
+          <label for="name">დაწყების რიცხვი</label>
+          <input id="startDate-input--${last10Digits}" type="date" class="name--input" required />
+          <ion-icon
+            class="checkmark-icon hidden"
+            name="checkmark-outline"
+          ></ion-icon>
+          <ion-icon
+            class="alert-icon hidden"
+            name="alert-circle-outline"
+          ></ion-icon>
+        </div>
+        <div class="name" id="endDate-input-parentDIV--${last10Digits}">
+          <label for="last-name">დამთავრების რიცხვი</label>
+          <input
+            id="endDate-input--${last10Digits}"
+            type="date"
+            class="name--input"
+            required
+          />
+          <ion-icon
+            class="checkmark-icon hidden"
+            name="checkmark-outline"
+          ></ion-icon>
+          <ion-icon
+            class="alert-icon hidden"
+            name="alert-circle-outline"
+          ></ion-icon>
+        </div>
+      </form>
+
+      <!-- job description -->
+      <div class="about--me job-description" id="aboutExp-input-parentDIV--${last10Digits}">
+        <label for="about-me">აღწერა</label>
+        <textarea
+          class="name--input"
+          id="about-exp-input--${last10Digits}"
+          type="text"
+          placeholder="როლი თანამდებობაზე და ზოგადი აღწერა"
+          required
+        ></textarea>
+        <ion-icon
+          class="checkmark-icon hidden"
+          name="checkmark-outline"
+        ></ion-icon>
+        <ion-icon
+          class="alert-icon hidden"
+          name="alert-circle-outline"
+        ></ion-icon>
+        <div class="border-bottom margin-top--58"></div>
+      </div>
+    </div>
+      `;
+
+  const htmlView = `
+      <!-- experience section -->
+      <div class="experience-section">
+        <h3>გამოცდილება</h3>
+        <h4>
+          <span id="position-output--${last10Digits}">React Native Developer</span>,
+          <span id="employer-output--${last10Digits}">Microsoft</span>
+        </h4>
+        <h5>
+          <span id="startDate-output--${last10Digits}">2020-09-23</span> -
+          <span id="endDate-output--${last10Digits}">2020-09-23</span>
+        </h5>
+        <h6 id="about-exp-output--${last10Digits}">
+          Experienced Javascript Native Developer with 5 years in the
+          industry. proficient withreact. Used problem-solving aptitude to
+          encahge application performance by 14%.created data visualisation
+          tools and integrated designs.
+        </h6>
+        <div class="border-bottom margin-top--31"></div>
+      </div>
+      `;
+
+  moreExperienceContainer.insertAdjacentHTML('beforebegin', html);
+  studyContainer.insertAdjacentHTML('beforebegin', htmlView);
+
+  moreExperienceData.push({
+    id: last10Digits,
+    positionDiv: `position-input-parentDIV--${last10Digits}`,
+    positionInput: `position-input--${last10Digits}`,
+    employerDiv: `employer-input-parentDIV--${last10Digits}`,
+    employerInput: `employer-input--${last10Digits}`,
+    starterDiv: `startDate-input-parentDIV--${last10Digits}`,
+    starterInput: `startDate-input--${last10Digits}`,
+    endDateDiv: `endDate-input-parentDIV--${last10Digits}`,
+    endDateInput: `endDate-input--${last10Digits}`,
+    aboutExpDiv: `aboutExp-input-parentDIV--${last10Digits}`,
+    aboutExpInput: `about-exp-input--${last10Digits}`,
+    positionOutput: `position-output--${last10Digits}`,
+    employerOutput: `employer-output--${last10Digits}`,
+    startDateOutput: `startDate-output--${last10Digits}`,
+    endDateOutput: `endDate-output--${last10Digits}`,
+    aboutExpOutput: `about-exp-output--${last10Digits}`,
+  });
+
+  /////////////////////////////////////////////
+  moreExperienceData.forEach((data, i) => {
+    document
+      .getElementById(moreExperienceData[i].positionInput)
+      .addEventListener('input', function () {
+        const output = document.getElementById(data.positionOutput);
+        const parentDiv = document.getElementById(data.positionDiv);
+
+        data.positionValue = this.value.trim();
+        let value = data.positionValue;
+
+        moreExpEmpElement.moreExpPosEmp(value, output, parentDiv);
+
+        localStorage.setItem(
+          'moreExperienceData',
+          JSON.stringify(moreExperienceData)
+        );
+
+        console.log(moreExperienceData);
+      });
+
+    document
+      .getElementById(moreExperienceData[i].employerInput)
+      .addEventListener('input', function () {
+        const output = document.getElementById(data.employerOutput);
+        const parentDiv = document.getElementById(data.employerDiv);
+
+        data.emplyerValue = this.value.trim();
+        let value = data.emplyerValue;
+
+        moreExpEmpElement.moreExpPosEmp(value, output, parentDiv);
+
+        localStorage.setItem(
+          'moreExperienceData',
+          JSON.stringify(moreExperienceData)
+        );
+
+        console.log(moreExperienceData);
+      });
+
+    document
+      .getElementById(moreExperienceData[i].starterInput)
+      .addEventListener('input', function () {
+        const output = document.getElementById(data.startDateOutput);
+        const parentDiv = document.getElementById(data.starterDiv);
+
+        data.startDateValue = this.value.trim();
+        let value = data.startDateValue;
+
+        startEndDate.moreStartEndDateRender(value, output, parentDiv);
+        localStorage.setItem(
+          'moreExperienceData',
+          JSON.stringify(moreExperienceData)
+        );
+      });
+
+    document
+      .getElementById(moreExperienceData[i].endDateInput)
+      .addEventListener('input', function () {
+        const output = document.getElementById(data.endDateOutput);
+        const parentDiv = document.getElementById(data.endDateDiv);
+
+        data.endDateValue = this.value.trim();
+        let value = data.endDateValue;
+
+        startEndDate.moreStartEndDateRender(value, output, parentDiv);
+        localStorage.setItem(
+          'moreExperienceData',
+          JSON.stringify(moreExperienceData)
+        );
+      });
+
+    document
+      .getElementById(moreExperienceData[i].aboutExpInput)
+      .addEventListener('input', function () {
+        const output = document.getElementById(data.aboutExpOutput);
+        const parentDiv = document.getElementById(data.aboutExpDiv);
+
+        data.aboutValue = this.value.trim();
+        let value = data.aboutValue;
+
+        aboutExpElement.moreDescribeRender(value, output, parentDiv);
+
+        localStorage.setItem(
+          'moreExperienceData',
+          JSON.stringify(moreExperienceData)
+        );
+      });
+  });
+});
