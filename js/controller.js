@@ -31,6 +31,8 @@ const nextBtnSection_3 = document.getElementById('next-page-section-3');
 const backBtnSection_4 = document.getElementById('back-page-section-4');
 const finishBtnSection_4 = document.getElementById('finish-page-section-4');
 const arrowBtnSection_1 = document.getElementById('arrow-btn-section-1');
+const arrowBtnSection_2 = document.getElementById('arrow-btn-section-2');
+
 ////////////////////////////////////////////
 ////////////////////////////////////////////
 /** GENERAL INFO */
@@ -89,11 +91,7 @@ const aboutExperienceParentDIV = document.getElementById(
 const aboutExperienceInput = document.getElementById('about-exp-input');
 const aboutExperienceOutput = document.getElementById('about-exp-output');
 ////////////////////////////////////////////
-////////////////////////////
-/** ONLOADING */
-window.onload = function () {
-  section1.classList.remove('hidden');
-};
+
 ///////////////////////////////////////////
 
 //////////////////////////////////////////////
@@ -112,6 +110,21 @@ let sectionVisibility = {
   section3: false,
   section4: false,
   section5: false,
+};
+
+////////////////////////////
+/** ONLOADING */
+window.onload = function () {
+  section1.classList.remove('hidden');
+
+  ///
+  // ADDED EXPERIENCE
+  // let addedMoreExpLocalStorage = JSON.parse(
+  //   localStorage.getItem('moreExperienceData')
+  // );
+
+  // if (addedMoreExpLocalStorage === null) return;
+  // else moreExperienceData = addedMoreExpLocalStorage;
 };
 
 /** DOMContentLoaded event to wait for the HTML and CSS to finish loading before executing the JavaScript code */
@@ -213,8 +226,8 @@ document.addEventListener('DOMContentLoaded', function () {
   if (addedMoreExpLocalStorage === null) return;
   else moreExperienceData = addedMoreExpLocalStorage;
 
+  console.log(addedMoreExpLocalStorage);
   moreExperienceData.forEach((data, i) => {
-    // console.log(d);
     markupExpElement.markupExp(
       data.id,
       moreExperienceContainer,
@@ -585,8 +598,7 @@ init();
 
 ///////////////////////////////////
 ///////////////////////////////////
-///////////////////////////////////
-///////////////////////////////////
+// Top-Left Arrow BTN General Imfo Section
 arrowBtnSection_1.addEventListener('click', function (e) {
   localStorage.removeItem('inputValues');
 
@@ -635,21 +647,59 @@ arrowBtnSection_1.addEventListener('click', function (e) {
     'ძალიან მიყვარს დიზაინის კეთება. დილით ადრე რომ ავდგები გამამხნევებელი ვარჯიშების მაგიერ დიზაინს ვაკეთებ.';
 });
 
+////////////////////////////////////////////
+// Top-Left Arrow BTN Experience Section
+arrowBtnSection_2.addEventListener('click', function (e) {
+  moreExperienceData.forEach((data, i) => {
+    console.log(data);
+    document.getElementById(data.sectionEdit).remove();
+    document.getElementById(data.sectionView).remove();
+  });
+  ////
+  localStorage.removeItem('moreExperienceData');
+  moreExperienceData = [];
+  console.log(moreExperienceData);
+
+  if (
+    !sectionVisibility.section1 &&
+    !sectionVisibility.section2 &&
+    sectionVisibility.section3 &&
+    !sectionVisibility.section4 &&
+    sectionVisibility.section5
+  ) {
+    section1.style.display = 'none';
+    section2.style.display = 'block';
+    section3.style.display = 'none';
+    section4.style.display = 'none';
+    section5.style.display = 'block';
+
+    sectionVisibility.section1 = false;
+    sectionVisibility.section2 = true;
+    sectionVisibility.section3 = false;
+    sectionVisibility.section4 = false;
+    sectionVisibility.section5 = true;
+    localStorage.setItem(
+      'sectionVisibility',
+      JSON.stringify(sectionVisibility)
+    );
+  }
+
+  positionOutput.textContent = `React Native Developer`;
+  employerOutput.textContent = `Microsoft`;
+  startDateOutput.textContent = `2020-09-23`;
+  endDateOutput.textContent = `2028-12-28`;
+  aboutExperienceOutput.textContent = `Experienced Javascript Native Developer with 5 years in the industry. proficient withreact. Used problem-solving aptitude to encahge application performance by 14%.created data visualisation tools and integrated designs.`;
+  console.log(moreExperienceData.length);
+});
+
 ////////////////////////////////
 /** ADDING MORE EXPERIENCE */
 //////////////////////////////////////
-// const moreEperienceBtn = document.getElementById('more-experience-btn');
-// const moreExperienceContainer = document.getElementById(
-//   'more-experience-container'
-// );
-// const studyContainer = document.getElementById('study');
-
 // More Experience BTN
 moreEperienceBtn.addEventListener('click', function (e) {
   const myDate = new Date();
   const dateNum = myDate.getTime();
   const last10Digits = dateNum.toString().slice(-10);
-  console.log(last10Digits);
   // Markup HTML
   markupExpElement.markupExp(
     last10Digits,
@@ -660,6 +710,8 @@ moreEperienceBtn.addEventListener('click', function (e) {
   // Saving data
   moreExperienceData.push({
     id: last10Digits,
+    sectionEdit: `experience--${last10Digits}`,
+    sectionView: `experience-view--${last10Digits}`,
     positionDiv: `position-input-parentDIV--${last10Digits}`,
     positionInput: `position-input--${last10Digits}`,
     employerDiv: `employer-input-parentDIV--${last10Digits}`,
@@ -681,15 +733,11 @@ moreEperienceBtn.addEventListener('click', function (e) {
     'moreExperienceData',
     JSON.stringify(moreExperienceData)
   );
-
   /////////////////////////////////////////////
   // TO GET VALUE
   moreExperienceData.forEach((data, i) => {
+    console.log(data.id);
     // POSITION
-    let inputEl = data.positionInput;
-    console.log(inputEl);
-    // console.log(data.positionInput);
-    console.log(document.getElementById(`${inputEl}`));
     document
       .getElementById(data.positionInput)
       .addEventListener('input', function () {

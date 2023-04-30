@@ -17,7 +17,7 @@ class MarkupExp extends View {
     this._studyContainer = study;
 
     const html = `
-    <div class="experience"  id="">
+    <div class="experience"  id="experience--${this._id}">
       <!-- experience and employer -->
       <form class="contact--form margin-top--37">
         <div class="mail-container" id="position-input-parentDIV--${this._id}">
@@ -109,7 +109,7 @@ class MarkupExp extends View {
 
     const htmlView = `
       <!-- experience section -->
-      <div class="experience-section">
+      <div class="experience-section" id="experience-view--${this._id}">
         <h3>გამოცდილება</h3>
         <h4>
           <span id="position-output--${this._id}">React Native Developer</span>,
