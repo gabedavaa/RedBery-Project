@@ -12,7 +12,12 @@ import aboutExpElement from './views/experience/aboutExpElement.js';
 import moreExpEmpElement from './views/experience/moreExpEmpElement.js';
 import markupExpElement from './views/experience/markupExpElement.js';
 //////////////////////////////////////////////////
-
+const moreEperienceBtn = document.getElementById('more-experience-btn');
+const moreExperienceContainer = document.getElementById(
+  'more-experience-container'
+);
+const studyContainer = document.getElementById('study');
+//////////////////////////////////////////////////////////
 const section1 = document.getElementById('section-1');
 const section2 = document.getElementById('section-2');
 const section3 = document.getElementById('section-3');
@@ -199,6 +204,155 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (inputValues.aboutExpInputValue)
     aboutExperienceOutput.textContent = inputValues.aboutExpInputValue;
+
+  // ADDED EXPERIENCE
+  let addedMoreExpLocalStorage = JSON.parse(
+    localStorage.getItem('moreExperienceData')
+  );
+
+  if (addedMoreExpLocalStorage === null) return;
+  else moreExperienceData = addedMoreExpLocalStorage;
+
+  moreExperienceData.forEach((data, i) => {
+    // console.log(d);
+    markupExpElement.markupExp(
+      data.id,
+      moreExperienceContainer,
+      studyContainer
+    );
+
+    if (!data.positionValue) {
+      console.log(data.positionValue);
+      document.getElementById(
+        data.positionOutput
+      ).textContent = `React Native Developer`;
+    } else {
+      document.getElementById(data.positionOutput).textContent =
+        data.positionValue;
+    }
+
+    if (!data.emplyerValue) {
+      console.log(data.emplyerValue);
+      document.getElementById(data.employerOutput).textContent = `Microsoft`;
+    } else {
+      document.getElementById(data.employerOutput).textContent =
+        data.emplyerValue;
+    }
+
+    if (!data.startDateValue) {
+      console.log(data.startDateValue);
+      document.getElementById(data.startDateOutput).textContent = `2020-09-23`;
+    } else {
+      document.getElementById(data.startDateOutput).textContent =
+        data.startDateValue;
+    }
+
+    if (!data.endDateValue) {
+      console.log(data.endDateValue);
+      document.getElementById(data.endDateOutput).textContent = `2028-12-28`;
+    } else {
+      document.getElementById(data.endDateOutput).textContent =
+        data.endDateValue;
+    }
+
+    if (!data.aboutValue) {
+      console.log(data.aboutValue);
+      document.getElementById(
+        data.aboutExpOutput
+      ).textContent = `Experienced Javascript Native Developer with 5 years in the industry. proficient withreact. Used problem-solving aptitude to encahge application performance by 14%.created data visualisation tools and integrated designs.`;
+    } else {
+      document.getElementById(data.aboutExpOutput).textContent =
+        data.aboutValue;
+    }
+
+    // POSITION
+    document
+      .getElementById(data.positionInput)
+      .addEventListener('input', function () {
+        const output = document.getElementById(data.positionOutput);
+        const parentDiv = document.getElementById(data.positionDiv);
+
+        data.positionValue = this.value.trim();
+        let value = data.positionValue;
+
+        moreExpEmpElement.moreExpPosEmp(value, output, parentDiv);
+
+        localStorage.setItem(
+          'moreExperienceData',
+          JSON.stringify(moreExperienceData)
+        );
+      });
+
+    // EMPLOYER
+    document
+      .getElementById(data.employerInput)
+      .addEventListener('input', function () {
+        const output = document.getElementById(data.employerOutput);
+        const parentDiv = document.getElementById(data.employerDiv);
+
+        data.emplyerValue = this.value.trim();
+        let value = data.emplyerValue;
+
+        moreExpEmpElement.moreExpPosEmp(value, output, parentDiv);
+
+        localStorage.setItem(
+          'moreExperienceData',
+          JSON.stringify(moreExperienceData)
+        );
+      });
+
+    // START DATE
+    document
+      .getElementById(data.starterInput)
+      .addEventListener('input', function () {
+        const output = document.getElementById(data.startDateOutput);
+        const parentDiv = document.getElementById(data.starterDiv);
+
+        data.startDateValue = this.value.trim();
+        let value = data.startDateValue;
+
+        startEndDate.moreStartEndDateRender(value, output, parentDiv);
+        localStorage.setItem(
+          'moreExperienceData',
+          JSON.stringify(moreExperienceData)
+        );
+      });
+
+    // END DATE
+    document
+      .getElementById(data.endDateInput)
+      .addEventListener('input', function () {
+        const output = document.getElementById(data.endDateOutput);
+        const parentDiv = document.getElementById(data.endDateDiv);
+
+        data.endDateValue = this.value.trim();
+        let value = data.endDateValue;
+
+        startEndDate.moreStartEndDateRender(value, output, parentDiv);
+        localStorage.setItem(
+          'moreExperienceData',
+          JSON.stringify(moreExperienceData)
+        );
+      });
+
+    // DESCRIPTION
+    document
+      .getElementById(data.aboutExpInput)
+      .addEventListener('input', function () {
+        const output = document.getElementById(data.aboutExpOutput);
+        const parentDiv = document.getElementById(data.aboutExpDiv);
+
+        data.aboutValue = this.value.trim();
+        let value = data.aboutValue;
+
+        aboutExpElement.moreDescribeRender(value, output, parentDiv);
+
+        localStorage.setItem(
+          'moreExperienceData',
+          JSON.stringify(moreExperienceData)
+        );
+      });
+  });
 });
 
 /////////////////////////////////
@@ -484,18 +638,18 @@ arrowBtnSection_1.addEventListener('click', function (e) {
 ////////////////////////////////
 /** ADDING MORE EXPERIENCE */
 //////////////////////////////////////
-const moreEperienceBtn = document.getElementById('more-experience-btn');
-const moreExperienceContainer = document.getElementById(
-  'more-experience-container'
-);
-const studyContainer = document.getElementById('study');
+// const moreEperienceBtn = document.getElementById('more-experience-btn');
+// const moreExperienceContainer = document.getElementById(
+//   'more-experience-container'
+// );
+// const studyContainer = document.getElementById('study');
 
 // More Experience BTN
 moreEperienceBtn.addEventListener('click', function (e) {
   const myDate = new Date();
   const dateNum = myDate.getTime();
   const last10Digits = dateNum.toString().slice(-10);
-
+  console.log(last10Digits);
   // Markup HTML
   markupExpElement.markupExp(
     last10Digits,
@@ -523,12 +677,21 @@ moreEperienceBtn.addEventListener('click', function (e) {
     aboutExpOutput: `about-exp-output--${last10Digits}`,
   });
 
+  localStorage.setItem(
+    'moreExperienceData',
+    JSON.stringify(moreExperienceData)
+  );
+
   /////////////////////////////////////////////
   // TO GET VALUE
   moreExperienceData.forEach((data, i) => {
     // POSITION
+    let inputEl = data.positionInput;
+    console.log(inputEl);
+    // console.log(data.positionInput);
+    console.log(document.getElementById(`${inputEl}`));
     document
-      .getElementById(moreExperienceData[i].positionInput)
+      .getElementById(data.positionInput)
       .addEventListener('input', function () {
         const output = document.getElementById(data.positionOutput);
         const parentDiv = document.getElementById(data.positionDiv);
@@ -542,13 +705,11 @@ moreEperienceBtn.addEventListener('click', function (e) {
           'moreExperienceData',
           JSON.stringify(moreExperienceData)
         );
-
-        console.log(moreExperienceData);
       });
 
     // EMPLOYER
     document
-      .getElementById(moreExperienceData[i].employerInput)
+      .getElementById(data.employerInput)
       .addEventListener('input', function () {
         const output = document.getElementById(data.employerOutput);
         const parentDiv = document.getElementById(data.employerDiv);
@@ -562,13 +723,11 @@ moreEperienceBtn.addEventListener('click', function (e) {
           'moreExperienceData',
           JSON.stringify(moreExperienceData)
         );
-
-        console.log(moreExperienceData);
       });
 
     // START DATE
     document
-      .getElementById(moreExperienceData[i].starterInput)
+      .getElementById(data.starterInput)
       .addEventListener('input', function () {
         const output = document.getElementById(data.startDateOutput);
         const parentDiv = document.getElementById(data.starterDiv);
@@ -585,7 +744,7 @@ moreEperienceBtn.addEventListener('click', function (e) {
 
     // END DATE
     document
-      .getElementById(moreExperienceData[i].endDateInput)
+      .getElementById(data.endDateInput)
       .addEventListener('input', function () {
         const output = document.getElementById(data.endDateOutput);
         const parentDiv = document.getElementById(data.endDateDiv);
@@ -602,7 +761,7 @@ moreEperienceBtn.addEventListener('click', function (e) {
 
     // DESCRIPTION
     document
-      .getElementById(moreExperienceData[i].aboutExpInput)
+      .getElementById(data.aboutExpInput)
       .addEventListener('input', function () {
         const output = document.getElementById(data.aboutExpOutput);
         const parentDiv = document.getElementById(data.aboutExpDiv);
@@ -617,5 +776,10 @@ moreEperienceBtn.addEventListener('click', function (e) {
           JSON.stringify(moreExperienceData)
         );
       });
+
+    localStorage.setItem(
+      'moreExperienceData',
+      JSON.stringify(moreExperienceData)
+    );
   });
 });
