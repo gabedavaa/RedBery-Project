@@ -13,7 +13,6 @@ export default class View {
     this._data = data;
 
     this._output.textContent = this._data;
-
     if (this._data.length < 2 || !this._nameLastNameRegex.test(this._data)) {
       this._inputParentDIV.classList.add('alert--input');
     } else {
@@ -26,7 +25,6 @@ export default class View {
     this._data = data;
 
     this._output.textContent = this._data;
-
     if (!this._aboutMeRegex.test(this._data)) {
       this._inputParentDIV.classList.add('alert--input');
     } else {

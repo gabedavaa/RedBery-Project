@@ -344,9 +344,14 @@
           <div class="experience">
             <!-- education -->
             <form class="contact--form margin-top--77">
-              <div class="mail-container">
+              <div class="mail-container" id="university-input-parentDIV">
                 <label for="text">სასწავლებელი</label>
-                <input type="text" required placeholder="სასწავლებელი" />
+                <input
+                  id="university-input"
+                  type="text"
+                  required
+                  placeholder="სასწავლებელი"
+                />
                 <p>მინიმუმ 2 სიმბოლო</p>
 
                 <ion-icon
@@ -362,10 +367,10 @@
 
             <!-- grade and end date -->
             <form class="names--form margin-top--31">
-              <div class="name">
+              <div class="name" id="level-input-parentDIV">
                 <label for="name">ხარისხი</label>
                 <!-- <input id="name" type="date" class="name--input" required /> -->
-                <select name="" id="" required>
+                <select name="" id="level-input" required>
                   <option value="">აირჩიე ხარისხი</option>
                   <option value="საშუალო სკოლა">საშუალო სკოლის დიპლომი</option>
                   <option value="ზოგადსაგანმანათლებლო">
@@ -390,10 +395,10 @@
                   name="alert-circle-outline"
                 ></ion-icon>
               </div>
-              <div class="name">
+              <div class="name" id="endDateStudy-input-parentDIV">
                 <label for="last-name">დამთავრების რიცხვი</label>
                 <input
-                  id="last-name"
+                  id="endDateStudy-input"
                   type="date"
                   class="name--input"
                   required
@@ -410,9 +415,13 @@
             </form>
 
             <!-- education description -->
-            <div class="about--me job-description">
+            <div
+              class="about--me job-description"
+              id="aboutStd-input-parentDIV"
+            >
               <label for="about-me">აღწერა</label>
               <textarea
+                id="about-std-input"
                 class="name--input"
                 type="text"
                 placeholder="განათლების აღწერა"
@@ -431,7 +440,7 @@
 
           <!-- adding -->
           <div>
-            <button class="btn btn--add-experience">
+            <button class="btn btn--add-experience" id="more-university-btn">
               სხვა სასწავლებელის დამატება
             </button>
           </div>
@@ -536,9 +545,16 @@
           <!-- education section -->
           <div class="experience-section" id="study">
             <h3>განათლება</h3>
-            <h4>საქართველოს მეცნიერების აკადემია</h4>
-            <h5>2020-09-23 - 2020-09-23</h5>
-            <h6>
+            <h4>
+              <span id="university-output"
+                >საქართველოს მეცნიერების აკადემია</span
+              >,
+              <span id="level-output">სტუდენტი</span>
+            </h4>
+            <h5>
+              <span id="endDate-edu-output">2020-09-23</span>
+            </h5>
+            <h6 id="about-edu-output">
               ვსწავლობდი გულმოდგინეთ. მყავდა ფრიადები. რაც შემეძლო — ვქენი.
               კომპიუტერები მიყვარდა. ვიჯექი ჩემთვის, ვაკაკუნებდი ამ კლავიშებზე.
               მეუნებოდნენ — დაჯექი, წაიკითხე რამე, რას აკაკუნებ, დრო მოვა და

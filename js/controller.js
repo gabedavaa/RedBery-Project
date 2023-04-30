@@ -11,6 +11,7 @@ import startEndDate from './views/experience/startEndDate.js';
 import aboutExpElement from './views/experience/aboutExpElement.js';
 import moreExpEmpElement from './views/experience/moreExpEmpElement.js';
 import markupExpElement from './views/experience/markupExpElement.js';
+import universityElement from './views/education/universityElement.js';
 //////////////////////////////////////////////////
 const moreEperienceBtn = document.getElementById('more-experience-btn');
 const moreExperienceContainer = document.getElementById(
@@ -90,6 +91,27 @@ const aboutExperienceParentDIV = document.getElementById(
 );
 const aboutExperienceInput = document.getElementById('about-exp-input');
 const aboutExperienceOutput = document.getElementById('about-exp-output');
+////
+const universityInputParentDIV = document.getElementById(
+  'university-input-parentDIV'
+);
+const levelInputParentDIV = document.getElementById('level-input-parentDIV');
+const endDateStudyInputParentDIV = document.getElementById(
+  'endDateStudy-input-parentDIV'
+);
+const aboutStudyInputParentDIV = document.getElementById(
+  'aboutStd-input-parentDIV'
+);
+const universityInput = document.getElementById('university-input');
+const levelInput = document.getElementById('level-input');
+const endDateEduInput = document.getElementById('endDateStudy-input');
+const aboutStudyInput = document.getElementById('about-std-input');
+
+const universityOutput = document.getElementById('university-output');
+const levelOutput = document.getElementById('level-output');
+const endDateStudyOutput = document.getElementById('endDate-edu-output');
+const aboutStudyOutput = document.getElementById('about-edu-output');
+
 ////////////////////////////////////////////
 
 ///////////////////////////////////////////
@@ -208,6 +230,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (inputValues.aboutExpInputValue)
     aboutExperienceOutput.textContent = inputValues.aboutExpInputValue;
+
+  // EDUCATION INFO
+  if (inputValues.universityValue) {
+    universityOutput.textContent = inputValues.universityValue;
+  }
+
+  if (inputValues.educationLevel) {
+    levelOutput.textContent = inputValues.educationLevel;
+  }
+
+  if (inputValues.educationEndDate) {
+    endDateStudyOutput.textContent = inputValues.educationEndDate;
+  }
+
+  if (inputValues.aboutStudyValue) {
+    aboutStudyOutput.textContent = inputValues.aboutStudyValue;
+  }
 
   // ADDED EXPERIENCE
   let addedMoreExpLocalStorage = JSON.parse(
@@ -585,6 +624,59 @@ const init = function () {
       aboutExpValue,
       aboutExperienceOutput,
       aboutExperienceParentDIV
+    );
+
+    localStorage.setItem('inputValues', JSON.stringify(inputValues));
+  });
+
+  /////////////////////
+  /////////////////////
+  // Education Section
+  universityInput.addEventListener('input', function () {
+    inputValues.universityValue = this.value.trim();
+    let uniValue = inputValues.universityValue;
+
+    universityElement.outputRender(uniValue);
+    localStorage.setItem('inputValues', JSON.stringify(inputValues));
+  });
+
+  // Education Level
+  levelInput.addEventListener('change', function () {
+    inputValues.educationLevel = this.value.trim();
+    let eduValue = inputValues.educationLevel;
+
+    startEndDate.moreStartEndDateRender(
+      eduValue,
+      levelOutput,
+      levelInputParentDIV
+    );
+    localStorage.setItem('inputValues', JSON.stringify(inputValues));
+  });
+
+  // Education End Date
+  endDateEduInput.addEventListener('change', function () {
+    inputValues.educationEndDate = this.value.trim();
+    let eduEndValue = inputValues.educationEndDate;
+
+    startEndDate.moreStartEndDateRender(
+      eduEndValue,
+      endDateStudyOutput,
+      endDateStudyInputParentDIV
+    );
+    localStorage.setItem('inputValues', JSON.stringify(inputValues));
+  });
+
+  // ABOUT EDUCATION
+  aboutStudyInput.addEventListener('input', function () {
+    if (!aboutExperienceInput && aboutExperienceInput === null) return;
+
+    inputValues.aboutStudyValue = this.value;
+    let aboutEduValue = inputValues.aboutStudyValue;
+
+    aboutExpElement.moreDescribeRender(
+      aboutEduValue,
+      aboutStudyOutput,
+      aboutStudyInputParentDIV
     );
 
     localStorage.setItem('inputValues', JSON.stringify(inputValues));
