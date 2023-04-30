@@ -116,15 +116,6 @@ let sectionVisibility = {
 /** ONLOADING */
 window.onload = function () {
   section1.classList.remove('hidden');
-
-  ///
-  // ADDED EXPERIENCE
-  // let addedMoreExpLocalStorage = JSON.parse(
-  //   localStorage.getItem('moreExperienceData')
-  // );
-
-  // if (addedMoreExpLocalStorage === null) return;
-  // else moreExperienceData = addedMoreExpLocalStorage;
 };
 
 /** DOMContentLoaded event to wait for the HTML and CSS to finish loading before executing the JavaScript code */
@@ -242,6 +233,7 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
       document.getElementById(data.positionOutput).textContent =
         data.positionValue;
+      document.getElementById(data.positionInput).value = data.positionValue;
     }
 
     if (!data.emplyerValue) {
@@ -250,6 +242,7 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
       document.getElementById(data.employerOutput).textContent =
         data.emplyerValue;
+      document.getElementById(data.employerInput).value = data.emplyerValue;
     }
 
     if (!data.startDateValue) {
@@ -258,6 +251,7 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
       document.getElementById(data.startDateOutput).textContent =
         data.startDateValue;
+      document.getElementById(data.starterInput).value = data.startDateValue;
     }
 
     if (!data.endDateValue) {
@@ -266,6 +260,7 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
       document.getElementById(data.endDateOutput).textContent =
         data.endDateValue;
+      document.getElementById(data.endDateInput).value = data.endDateValue;
     }
 
     if (!data.aboutValue) {
@@ -276,6 +271,7 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
       document.getElementById(data.aboutExpOutput).textContent =
         data.aboutValue;
+      document.getElementById(data.aboutExpInput).value = data.aboutValue;
     }
 
     // POSITION
@@ -685,11 +681,15 @@ arrowBtnSection_2.addEventListener('click', function (e) {
   }
 
   positionOutput.textContent = `React Native Developer`;
+  positionInput.value = ``;
   employerOutput.textContent = `Microsoft`;
+  employerInput.value = ``;
   startDateOutput.textContent = `2020-09-23`;
+  startDateInput.value = ``;
   endDateOutput.textContent = `2028-12-28`;
+  endDateInput.value = ``;
   aboutExperienceOutput.textContent = `Experienced Javascript Native Developer with 5 years in the industry. proficient withreact. Used problem-solving aptitude to encahge application performance by 14%.created data visualisation tools and integrated designs.`;
-  console.log(moreExperienceData.length);
+  aboutExperienceInput.value = ``;
 });
 
 ////////////////////////////////
