@@ -12,12 +12,19 @@ import aboutExpElement from './views/experience/aboutExpElement.js';
 import moreExpEmpElement from './views/experience/moreExpEmpElement.js';
 import markupExpElement from './views/experience/markupExpElement.js';
 import universityElement from './views/education/universityElement.js';
+import markupEduElement from './views/education/markupEduElement.js';
 //////////////////////////////////////////////////
 const moreEperienceBtn = document.getElementById('more-experience-btn');
 const moreExperienceContainer = document.getElementById(
   'more-experience-container'
 );
 const studyContainer = document.getElementById('study');
+const moreEducationBtn = document.getElementById('more-university-btn');
+const moreEducationContainer = document.getElementById(
+  'more-education-container'
+);
+const moreEduViewContainer = document.getElementById('moreEduView-lastDiv');
+
 //////////////////////////////////////////////////////////
 const section1 = document.getElementById('section-1');
 const section2 = document.getElementById('section-2');
@@ -122,6 +129,8 @@ const aboutStudyOutput = document.getElementById('about-edu-output');
 let inputValues = {};
 // Data More Experience
 let moreExperienceData = [];
+// Data More Education
+let moreEducationData = [];
 
 ////////////////////////////
 
@@ -475,7 +484,6 @@ backBtnSection_4.addEventListener('click', e => {
 });
 
 //////////////////////
-////////////////////////
 ///////////////////////
 /* closing pop-up */
 const closeBtn = document.getElementById('btn-close');
@@ -487,7 +495,6 @@ closeBtn.addEventListener('click', e => {
 
 ////////////////////////////////////////
 ////////////////////////////////////////////
-
 // NAME AND LAST-NAME
 const init = function () {
   nameInput.addEventListener('input', function () {
@@ -922,4 +929,19 @@ moreEperienceBtn.addEventListener('click', function (e) {
       JSON.stringify(moreExperienceData)
     );
   });
+});
+
+/////////////////////////////////////////////
+////////////////////////////////////////////
+// More Education
+moreEducationBtn.addEventListener('click', function (e) {
+  const myDate = new Date();
+  const dateNum = myDate.getTime();
+  const last10Digits = dateNum.toString().slice(-10);
+
+  markupEduElement.markupEdu(
+    last10Digits,
+    moreEducationContainer,
+    moreEduViewContainer
+  );
 });
