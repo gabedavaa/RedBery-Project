@@ -40,6 +40,7 @@ const backBtnSection_4 = document.getElementById('back-page-section-4');
 const finishBtnSection_4 = document.getElementById('finish-page-section-4');
 const arrowBtnSection_1 = document.getElementById('arrow-btn-section-1');
 const arrowBtnSection_2 = document.getElementById('arrow-btn-section-2');
+const arrowBtnSection_3 = document.getElementById('arrow-btn-section-3');
 
 ////////////////////////////////////////////
 ////////////////////////////////////////////
@@ -457,7 +458,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // END DATE
     if (!data.endDateValue) {
       console.log(data.endDateValue);
-      document.getElementById(data.endDateOutput).textContent = `2020-09-23 `;
+      document.getElementById(data.endDateOutput).textContent = `2020-09-23`;
     } else {
       document.getElementById(data.endDateOutput).textContent =
         data.endDateValue;
@@ -927,6 +928,53 @@ arrowBtnSection_2.addEventListener('click', function (e) {
   endDateInput.value = ``;
   aboutExperienceOutput.textContent = `Experienced Javascript Native Developer with 5 years in the industry. proficient withreact. Used problem-solving aptitude to encahge application performance by 14%.created data visualisation tools and integrated designs.`;
   aboutExperienceInput.value = ``;
+});
+
+////////////////////////////////////////////
+// Top-Left Arrow BTN Experience Section
+arrowBtnSection_3.addEventListener('click', function (e) {
+  moreEducationData.forEach((data, i) => {
+    console.log(data);
+    document.getElementById(data.sectionEdit).remove();
+    document.getElementById(data.sectionView).remove();
+  });
+  ////
+  localStorage.removeItem('moreEducationData');
+  moreEducationData = [];
+  console.log(moreExperienceData);
+
+  if (
+    !sectionVisibility.section1 &&
+    !sectionVisibility.section2 &&
+    !sectionVisibility.section3 &&
+    sectionVisibility.section4 &&
+    sectionVisibility.section5
+  ) {
+    section1.style.display = 'none';
+    section2.style.display = 'none';
+    section3.style.display = 'block';
+    section4.style.display = 'none';
+    section5.style.display = 'block';
+
+    sectionVisibility.section1 = false;
+    sectionVisibility.section2 = false;
+    sectionVisibility.section3 = true;
+    sectionVisibility.section4 = false;
+    sectionVisibility.section5 = true;
+    localStorage.setItem(
+      'sectionVisibility',
+      JSON.stringify(sectionVisibility)
+    );
+  }
+
+  universityOutput.textContent = `საქართველოს მეცნიერების აკადემია`;
+  universityInput.value = ``;
+  levelOutput.textContent = `სტუდენტი`;
+  levelInput.value = ``;
+  endDateStudyOutput.textContent = `2020-09-23`;
+  endDateEduInput.value = ``;
+  aboutStudyOutput.textContent = `ვსწავლობდი გულმოდგინეთ. მყავდა ფრიადები. რაც შემეძლო — ვქენი. კომპიუტერები მიყვარდა. ვიჯექი ჩემთვის, ვაკაკუნებდი ამ კლავიშებზე. მეუნებოდნენ — დაჯექი, წაიკითხე რამე, რას აკაკუნებ, დრო მოვა და ჩაგიკაკუნებსო. აჰა, მოვიდა დრო და ვერა ვარ დეველოპერი?`;
+  aboutStudyInput.value = ``;
 });
 
 ////////////////////////////////
