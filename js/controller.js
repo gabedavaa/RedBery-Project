@@ -1,5 +1,6 @@
 'use strict';
 // ////////////////////////////
+
 import nameElemet from './views/genInfo/nameElemet.js';
 import lastnameElemet from './views/genInfo/lastnameElemet.js';
 import aboutMeelment from './views/genInfo/aboutMeelment.js';
@@ -14,6 +15,7 @@ import markupExpElement from './views/experience/markupExpElement.js';
 import universityElement from './views/education/universityElement.js';
 import markupEduElement from './views/education/markupEduElement.js';
 //////////////////////////////////////////////////
+/////////////////////////////////////////////////
 const moreEperienceBtn = document.getElementById('more-experience-btn');
 const moreExperienceContainer = document.getElementById(
   'more-experience-container'
@@ -41,6 +43,7 @@ const finishBtnSection_4 = document.getElementById('finish-page-section-4');
 const arrowBtnSection_1 = document.getElementById('arrow-btn-section-1');
 const arrowBtnSection_2 = document.getElementById('arrow-btn-section-2');
 const arrowBtnSection_3 = document.getElementById('arrow-btn-section-3');
+const arrowBtnSection_4 = document.getElementById('arrow-btn-section-4');
 
 ////////////////////////////////////////////
 ////////////////////////////////////////////
@@ -99,7 +102,8 @@ const aboutExperienceParentDIV = document.getElementById(
 );
 const aboutExperienceInput = document.getElementById('about-exp-input');
 const aboutExperienceOutput = document.getElementById('about-exp-output');
-////
+/////////////////////////////////////
+// Education
 const universityInputParentDIV = document.getElementById(
   'university-input-parentDIV'
 );
@@ -120,9 +124,77 @@ const levelOutput = document.getElementById('level-output');
 const endDateStudyOutput = document.getElementById('endDate-edu-output');
 const aboutStudyOutput = document.getElementById('about-edu-output');
 
-////////////////////////////////////////////
-
+//////////////////////////////////////////
 ///////////////////////////////////////////
+const removeValidationMarks = function (div) {
+  console.log(div);
+  div.classList.remove('alert--input');
+  div.classList.remove('valid--input');
+};
+///
+const GENERAL_INFO_DEFAULT = function () {
+  nameOutput.textContent = 'ანზორ';
+  nameInput.value = '';
+
+  lastNameOutput.textContent = 'მუმლაძე';
+  lastNameInput.value = '';
+
+  mailText.textContent = 'anzor434@redberry.ge';
+  mailOutput.href = `mailto:anzor434@redberry.ge`;
+  mailInput.value = '';
+
+  phoneInput.value = '';
+  phoneNumber.textContent = `+995568300123`;
+  phoneOutput.href = `tel:${+995568300123}`;
+
+  profileImageOutput.src = './images/author photo.png';
+
+  aboutMeInput.value = '';
+  aboutMeOutput.textContent =
+    'ძალიან მიყვარს დიზაინის კეთება. დილით ადრე რომ ავდგები გამამხნევებელი ვარჯიშების მაგიერ დიზაინს ვაკეთებ.';
+
+  removeValidationMarks(nameInputParentDIV);
+  removeValidationMarks(lastNameParentDIV);
+  removeValidationMarks(mailInputParentDIV);
+  removeValidationMarks(phoneInputParentDIV);
+  removeValidationMarks(aboutMeParentDIV);
+};
+console.log(nameInputParentDIV);
+
+const EXPERIENCE_INFO_DEFAULT = function () {
+  positionOutput.textContent = `React Native Developer`;
+  positionInput.value = ``;
+  employerOutput.textContent = `Microsoft`;
+  employerInput.value = ``;
+  startDateOutput.textContent = `2020-09-23`;
+  startDateInput.value = ``;
+  endDateOutput.textContent = `2028-12-28`;
+  endDateInput.value = ``;
+  aboutExperienceOutput.textContent = `Experienced Javascript Native Developer with 5 years in the industry. proficient withreact. Used problem-solving aptitude to encahge application performance by 14%.created data visualisation tools and integrated designs.`;
+  aboutExperienceInput.value = ``;
+
+  removeValidationMarks(positionInputParentDIV);
+  removeValidationMarks(employerInputParentDIV);
+  removeValidationMarks(startDateInputParentDIV);
+  removeValidationMarks(endDateInputParentDIV);
+  removeValidationMarks(aboutExperienceParentDIV);
+};
+
+const EDUCATION_INFO_DEFAULT = function () {
+  universityOutput.textContent = `საქართველოს მეცნიერების აკადემია`;
+  universityInput.value = ``;
+  levelOutput.textContent = `სტუდენტი`;
+  levelInput.value = ``;
+  endDateStudyOutput.textContent = `2020-09-23`;
+  endDateEduInput.value = ``;
+  aboutStudyOutput.textContent = `ვსწავლობდი გულმოდგინეთ. მყავდა ფრიადები. რაც შემეძლო — ვქენი. კომპიუტერები მიყვარდა. ვიჯექი ჩემთვის, ვაკაკუნებდი ამ კლავიშებზე. მეუნებოდნენ — დაჯექი, წაიკითხე რამე, რას აკაკუნებ, დრო მოვა და ჩაგიკაკუნებსო. აჰა, მოვიდა დრო და ვერა ვარ დეველოპერი?`;
+  aboutStudyInput.value = ``;
+
+  removeValidationMarks(universityInputParentDIV);
+  removeValidationMarks(levelInputParentDIV);
+  removeValidationMarks(aboutStudyInputParentDIV);
+  removeValidationMarks(endDateStudyInputParentDIV);
+};
 
 //////////////////////////////////////////////
 ///////////////////////////////////////////////
@@ -565,7 +637,6 @@ starterBtnSection_1.addEventListener('click', e => {
   sectionVisibility.section5 = true;
 
   localStorage.setItem('sectionVisibility', JSON.stringify(sectionVisibility));
-  console.log(sectionVisibility);
 });
 
 /** NEXT BTN SECTION_2 */
@@ -859,26 +930,7 @@ arrowBtnSection_1.addEventListener('click', function (e) {
       JSON.stringify(sectionVisibility)
     );
   }
-
-  nameOutput.textContent = 'ანზორ';
-  nameInput.value = '';
-
-  lastNameOutput.textContent = 'მუმლაძე';
-  lastNameInput.value = '';
-
-  mailText.textContent = 'anzor434@redberry.ge';
-  mailOutput.href = `mailto:anzor434@redberry.ge`;
-  mailInput.value = '';
-
-  phoneInput.value = '';
-  phoneNumber.textContent = `+995568300123`;
-  phoneOutput.href = `tel:${+995568300123}`;
-
-  profileImageOutput.src = './images/author photo.png';
-
-  aboutMeInput.value = '';
-  aboutMeOutput.textContent =
-    'ძალიან მიყვარს დიზაინის კეთება. დილით ადრე რომ ავდგები გამამხნევებელი ვარჯიშების მაგიერ დიზაინს ვაკეთებ.';
+  GENERAL_INFO_DEFAULT();
 });
 
 ////////////////////////////////////////////
@@ -918,20 +970,11 @@ arrowBtnSection_2.addEventListener('click', function (e) {
     );
   }
 
-  positionOutput.textContent = `React Native Developer`;
-  positionInput.value = ``;
-  employerOutput.textContent = `Microsoft`;
-  employerInput.value = ``;
-  startDateOutput.textContent = `2020-09-23`;
-  startDateInput.value = ``;
-  endDateOutput.textContent = `2028-12-28`;
-  endDateInput.value = ``;
-  aboutExperienceOutput.textContent = `Experienced Javascript Native Developer with 5 years in the industry. proficient withreact. Used problem-solving aptitude to encahge application performance by 14%.created data visualisation tools and integrated designs.`;
-  aboutExperienceInput.value = ``;
+  EXPERIENCE_INFO_DEFAULT();
 });
 
 ////////////////////////////////////////////
-// Top-Left Arrow BTN Experience Section
+// Top-Left Arrow BTN Education Section
 arrowBtnSection_3.addEventListener('click', function (e) {
   moreEducationData.forEach((data, i) => {
     console.log(data);
@@ -967,14 +1010,94 @@ arrowBtnSection_3.addEventListener('click', function (e) {
     );
   }
 
-  universityOutput.textContent = `საქართველოს მეცნიერების აკადემია`;
-  universityInput.value = ``;
-  levelOutput.textContent = `სტუდენტი`;
-  levelInput.value = ``;
-  endDateStudyOutput.textContent = `2020-09-23`;
-  endDateEduInput.value = ``;
-  aboutStudyOutput.textContent = `ვსწავლობდი გულმოდგინეთ. მყავდა ფრიადები. რაც შემეძლო — ვქენი. კომპიუტერები მიყვარდა. ვიჯექი ჩემთვის, ვაკაკუნებდი ამ კლავიშებზე. მეუნებოდნენ — დაჯექი, წაიკითხე რამე, რას აკაკუნებ, დრო მოვა და ჩაგიკაკუნებსო. აჰა, მოვიდა დრო და ვერა ვარ დეველოპერი?`;
-  aboutStudyInput.value = ``;
+  EDUCATION_INFO_DEFAULT();
+});
+
+////////////////////////////////////////////
+// Top-Left Last Arrow BTN Section
+arrowBtnSection_4.addEventListener('click', function (e) {
+  if (
+    !sectionVisibility.section1 &&
+    !sectionVisibility.section2 &&
+    !sectionVisibility.section3 &&
+    !sectionVisibility.section4 &&
+    sectionVisibility.section5
+  ) {
+    section1.style.display = 'block';
+    section2.style.display = 'none';
+    section3.style.display = 'none';
+    section4.style.display = 'none';
+    section5.style.display = 'none';
+
+    sectionVisibility.section1 = true;
+    sectionVisibility.section2 = false;
+    sectionVisibility.section3 = false;
+    sectionVisibility.section4 = false;
+    sectionVisibility.section5 = false;
+    localStorage.setItem(
+      'sectionVisibility',
+      JSON.stringify(sectionVisibility)
+    );
+  }
+  section5.classList.remove('finished-editing');
+
+  // General info
+  localStorage.removeItem('inputValues');
+  GENERAL_INFO_DEFAULT();
+
+  // Experience info
+  moreExperienceData.forEach((data, i) => {
+    console.log(data);
+    document.getElementById(data.sectionEdit).remove();
+    document.getElementById(data.sectionView).remove();
+  });
+  localStorage.removeItem('moreExperienceData');
+  moreExperienceData = [];
+  EXPERIENCE_INFO_DEFAULT();
+
+  // Education info
+  moreEducationData.forEach((data, i) => {
+    console.log(data);
+    document.getElementById(data.sectionEdit).remove();
+    document.getElementById(data.sectionView).remove();
+  });
+  ////
+  localStorage.removeItem('moreEducationData');
+  moreEducationData = [];
+  EDUCATION_INFO_DEFAULT();
+
+  // moreEducationData.forEach((data, i) => {
+  //   console.log(data);
+  //   document.getElementById(data.sectionEdit).remove();
+  //   document.getElementById(data.sectionView).remove();
+  // });
+  // ////
+  // localStorage.removeItem('moreEducationData');
+  // moreEducationData = [];
+
+  // if (
+  //   !sectionVisibility.section1 &&
+  //   !sectionVisibility.section2 &&
+  //   !sectionVisibility.section3 &&
+  //   sectionVisibility.section4 &&
+  //   sectionVisibility.section5
+  // ) {
+  //   section1.style.display = 'none';
+  //   section2.style.display = 'none';
+  //   section3.style.display = 'block';
+  //   section4.style.display = 'none';
+  //   section5.style.display = 'block';
+
+  //   sectionVisibility.section1 = false;
+  //   sectionVisibility.section2 = false;
+  //   sectionVisibility.section3 = true;
+  //   sectionVisibility.section4 = false;
+  //   sectionVisibility.section5 = true;
+  //   localStorage.setItem(
+  //     'sectionVisibility',
+  //     JSON.stringify(sectionVisibility)
+  //   );
+  // }
 });
 
 ////////////////////////////////
