@@ -267,6 +267,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   console.log(addedMoreExpLocalStorage);
   moreExperienceData.forEach((data, i) => {
+    // Markup HTML
     markupExpElement.markupExp(
       data.id,
       moreExperienceContainer,
@@ -407,6 +408,143 @@ document.addEventListener('DOMContentLoaded', function () {
         localStorage.setItem(
           'moreExperienceData',
           JSON.stringify(moreExperienceData)
+        );
+      });
+  });
+
+  // ADDED EDUCATION
+  let addedMoreEduLocalStorage = JSON.parse(
+    localStorage.getItem('moreEducationData')
+  );
+
+  if (addedMoreEduLocalStorage === null) return;
+  else moreEducationData = addedMoreEduLocalStorage;
+
+  console.log(addedMoreEduLocalStorage);
+
+  //////////////////////////////////////
+  // Getting Values
+  moreEducationData.forEach((data, i) => {
+    // Markup HTML
+    markupEduElement.markupEdu(
+      data.id,
+      moreEducationContainer,
+      moreEduViewContainer
+    );
+
+    // UNIVERSITY
+    if (!data.universityValue) {
+      console.log(data.universityValue);
+      document.getElementById(
+        data.universityOutput
+      ).textContent = `საქართველოს მეცნიერების აკადემია`;
+    } else {
+      document.getElementById(data.universityOutput).textContent =
+        data.universityValue;
+      document.getElementById(data.universityInput).value =
+        data.universityValue;
+    }
+
+    // LEVEL
+    if (!data.levelValue) {
+      console.log(data.levelValue);
+      document.getElementById(data.levelOutput).textContent = `სტუდენტი`;
+    } else {
+      document.getElementById(data.levelOutput).textContent = data.levelValue;
+      document.getElementById(data.levelInput).value = data.levelValue;
+    }
+
+    // END DATE
+    if (!data.endDateValue) {
+      console.log(data.endDateValue);
+      document.getElementById(data.endDateOutput).textContent = `2020-09-23 `;
+    } else {
+      document.getElementById(data.endDateOutput).textContent =
+        data.endDateValue;
+      document.getElementById(data.endDateInput).value = data.endDateValue;
+    }
+
+    // DESCRIPTION
+    if (!data.aboutValue) {
+      console.log(data.aboutValue);
+      document.getElementById(
+        data.aboutEduOutput
+      ).textContent = `ვსწავლობდი გულმოდგინეთ. მყავდა ფრიადები. რაც შემეძლო — ვქენი. კომპიუტერები მიყვარდა. ვიჯექი ჩემთვის, ვაკაკუნებდი ამ კლავიშებზე. მეუნებოდნენ — დაჯექი, წაიკითხე რამე, რას აკაკუნებ, დრო მოვა და ჩაგიკაკუნებსო. აჰა, მოვიდა დრო და ვერა ვარ დეველოპერი?`;
+    } else {
+      document.getElementById(data.aboutEduOutput).textContent =
+        data.aboutValue;
+      document.getElementById(data.aboutEduInput).value = data.aboutValue;
+    }
+    ////
+
+    // UNIVERSITY
+    document
+      .getElementById(data.universityInput)
+      .addEventListener('input', function () {
+        const output = document.getElementById(data.universityOutput);
+        const parentDiv = document.getElementById(data.universityDiv);
+
+        data.universityValue = this.value.trim();
+        let value = data.universityValue;
+
+        moreExpEmpElement.moreExpPosEmp(value, output, parentDiv);
+
+        localStorage.setItem(
+          'moreEducationData',
+          JSON.stringify(moreEducationData)
+        );
+      });
+
+    // LEVEL
+    document
+      .getElementById(data.levelInput)
+      .addEventListener('change', function () {
+        const output = document.getElementById(data.levelOutput);
+        const parentDiv = document.getElementById(data.levelDiv);
+
+        data.levelValue = this.value.trim();
+        let value = data.levelValue;
+
+        moreExpEmpElement.moreExpPosEmp(value, output, parentDiv);
+
+        localStorage.setItem(
+          'moreEducationData',
+          JSON.stringify(moreEducationData)
+        );
+      });
+
+    // END DATE
+    document
+      .getElementById(data.endDateInput)
+      .addEventListener('input', function () {
+        const output = document.getElementById(data.endDateOutput);
+        const parentDiv = document.getElementById(data.endDateDiv);
+
+        data.endDateValue = this.value.trim();
+        let value = data.endDateValue;
+
+        startEndDate.moreStartEndDateRender(value, output, parentDiv);
+        localStorage.setItem(
+          'moreEducationData',
+          JSON.stringify(moreEducationData)
+        );
+      });
+
+    // DESCRIPTION
+    document
+      .getElementById(data.aboutEduInput)
+      .addEventListener('input', function () {
+        const output = document.getElementById(data.aboutEduOutput);
+        const parentDiv = document.getElementById(data.aboutEduDiv);
+
+        data.aboutValue = this.value.trim();
+        let value = data.aboutValue;
+
+        aboutExpElement.moreDescribeRender(value, output, parentDiv);
+
+        localStorage.setItem(
+          'moreEducationData',
+          JSON.stringify(moreEducationData)
         );
       });
   });
@@ -944,4 +1082,106 @@ moreEducationBtn.addEventListener('click', function (e) {
     moreEducationContainer,
     moreEduViewContainer
   );
+
+  // Saving data
+  moreEducationData.push({
+    id: last10Digits,
+    sectionEdit: `education--${last10Digits}`,
+    sectionView: `study-view--${last10Digits}`,
+    universityDiv: `university-input-parentDIV--${last10Digits}`,
+    universityInput: `university-input--${last10Digits}`,
+    levelDiv: `level-input-parentDIV--${last10Digits}`,
+    levelInput: `level-input--${last10Digits}`,
+    endDateDiv: `endDateStudy-input-parentDIV--${last10Digits}`,
+    endDateInput: `endDateStudy-input--${last10Digits}`,
+    aboutEduDiv: `aboutStd-input-parentDIV--${last10Digits}`,
+    aboutEduInput: `about-std-input--${last10Digits}`,
+    universityOutput: `university-output--${last10Digits}`,
+    levelOutput: `level-output--${last10Digits}`,
+    endDateOutput: `endDate-edu-output--${last10Digits}`,
+    aboutEduOutput: `about-edu-output--${last10Digits}`,
+  });
+
+  localStorage.setItem('moreEducationData', JSON.stringify(moreEducationData));
+
+  //////////////////////////////////////
+  // Getting Values
+
+  moreEducationData.forEach((data, i) => {
+    // UNIVERSITY
+    document
+      .getElementById(data.universityInput)
+      .addEventListener('input', function () {
+        const output = document.getElementById(data.universityOutput);
+        const parentDiv = document.getElementById(data.universityDiv);
+
+        data.universityValue = this.value.trim();
+        let value = data.universityValue;
+
+        moreExpEmpElement.moreExpPosEmp(value, output, parentDiv);
+
+        localStorage.setItem(
+          'moreEducationData',
+          JSON.stringify(moreEducationData)
+        );
+      });
+
+    // LEVEL
+    document
+      .getElementById(data.levelInput)
+      .addEventListener('change', function () {
+        const output = document.getElementById(data.levelOutput);
+        const parentDiv = document.getElementById(data.levelDiv);
+
+        data.levelValue = this.value.trim();
+        let value = data.levelValue;
+
+        moreExpEmpElement.moreExpPosEmp(value, output, parentDiv);
+
+        localStorage.setItem(
+          'moreEducationData',
+          JSON.stringify(moreEducationData)
+        );
+      });
+
+    // END DATE
+    document
+      .getElementById(data.endDateInput)
+      .addEventListener('input', function () {
+        const output = document.getElementById(data.endDateOutput);
+        const parentDiv = document.getElementById(data.endDateDiv);
+
+        data.endDateValue = this.value.trim();
+        let value = data.endDateValue;
+
+        startEndDate.moreStartEndDateRender(value, output, parentDiv);
+        localStorage.setItem(
+          'moreEducationData',
+          JSON.stringify(moreEducationData)
+        );
+      });
+
+    // DESCRIPTION
+    document
+      .getElementById(data.aboutEduInput)
+      .addEventListener('input', function () {
+        const output = document.getElementById(data.aboutEduOutput);
+        const parentDiv = document.getElementById(data.aboutEduDiv);
+
+        data.aboutValue = this.value.trim();
+        let value = data.aboutValue;
+
+        aboutExpElement.moreDescribeRender(value, output, parentDiv);
+
+        localStorage.setItem(
+          'moreEducationData',
+          JSON.stringify(moreEducationData)
+        );
+      });
+
+    localStorage.setItem(
+      'moreEducationData',
+      JSON.stringify(moreEducationData)
+    );
+  });
 });

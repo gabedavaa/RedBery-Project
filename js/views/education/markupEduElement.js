@@ -116,7 +116,7 @@ class MarkupEdu extends View {
       `;
 
     const htmlView = `
-      <div class="experience-section" id="study--${this._id}">
+      <div class="experience-section" id="study-view--${this._id}">
         <div class="border-bottom "></div>
         <h3 class="margin-top--24">განათლება</h3>
         <h4>
