@@ -1,6 +1,5 @@
 'use strict';
 // ////////////////////////////
-
 import nameElemet from './views/genInfo/nameElemet.js';
 import lastnameElemet from './views/genInfo/lastnameElemet.js';
 import aboutMeelment from './views/genInfo/aboutMeelment.js';
@@ -216,6 +215,11 @@ let sectionVisibility = {
   section5: false,
 };
 
+//////////////////////
+let popupAlert = {
+  popup: true,
+};
+
 ////////////////////////////
 /** ONLOADING */
 window.onload = function () {
@@ -227,7 +231,6 @@ document.addEventListener('DOMContentLoaded', function () {
   let sectionVisibilityLocalStorage = JSON.parse(
     localStorage.getItem('sectionVisibility')
   );
-
   if (sectionVisibilityLocalStorage === null) return;
   else sectionVisibility = sectionVisibilityLocalStorage;
 
@@ -267,6 +270,16 @@ document.addEventListener('DOMContentLoaded', function () {
     section5.classList.add('finished-editing');
   }
 
+  /////////////////////////
+  // popup
+  let popupAlertLocalStorage = JSON.parse(localStorage.getItem('popupAlert'));
+
+  if (popupAlertLocalStorage === null) return;
+  else popupAlert = popupAlertLocalStorage;
+
+  if (popupAlert.popup) closeBtnContainer.style.display = 'flex';
+  else closeBtnContainer.style.display = 'none';
+  ///////////
   let inputValuesLocalStorage = JSON.parse(localStorage.getItem('inputValues'));
   if (inputValuesLocalStorage === null) return;
   else inputValues = inputValuesLocalStorage;
@@ -680,6 +693,11 @@ finishBtnSection_4.addEventListener('click', e => {
   sectionVisibility.section4 = false;
 
   localStorage.setItem('sectionVisibility', JSON.stringify(sectionVisibility));
+
+  // popup
+  popupAlert.popup = true;
+  closeBtnContainer.style.display = 'flex';
+  localStorage.setItem('popupAlert', JSON.stringify(popupAlert));
 });
 
 /** BACK BTN SECTION_4 */
@@ -700,7 +718,11 @@ const closeBtn = document.getElementById('btn-close');
 const closeBtnContainer = document.querySelector('.btn-close');
 
 closeBtn.addEventListener('click', e => {
-  closeBtnContainer.style.display = 'none';
+  if (popupAlert.popup) closeBtnContainer.style.display = 'none';
+
+  popupAlert.popup = false;
+
+  localStorage.setItem('popupAlert', JSON.stringify(popupAlert));
 });
 
 ////////////////////////////////////////
@@ -1065,39 +1087,6 @@ arrowBtnSection_4.addEventListener('click', function (e) {
   localStorage.removeItem('moreEducationData');
   moreEducationData = [];
   EDUCATION_INFO_DEFAULT();
-
-  // moreEducationData.forEach((data, i) => {
-  //   console.log(data);
-  //   document.getElementById(data.sectionEdit).remove();
-  //   document.getElementById(data.sectionView).remove();
-  // });
-  // ////
-  // localStorage.removeItem('moreEducationData');
-  // moreEducationData = [];
-
-  // if (
-  //   !sectionVisibility.section1 &&
-  //   !sectionVisibility.section2 &&
-  //   !sectionVisibility.section3 &&
-  //   sectionVisibility.section4 &&
-  //   sectionVisibility.section5
-  // ) {
-  //   section1.style.display = 'none';
-  //   section2.style.display = 'none';
-  //   section3.style.display = 'block';
-  //   section4.style.display = 'none';
-  //   section5.style.display = 'block';
-
-  //   sectionVisibility.section1 = false;
-  //   sectionVisibility.section2 = false;
-  //   sectionVisibility.section3 = true;
-  //   sectionVisibility.section4 = false;
-  //   sectionVisibility.section5 = true;
-  //   localStorage.setItem(
-  //     'sectionVisibility',
-  //     JSON.stringify(sectionVisibility)
-  //   );
-  // }
 });
 
 ////////////////////////////////
