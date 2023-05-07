@@ -351,7 +351,6 @@ document.addEventListener('DOMContentLoaded', function () {
   if (addedMoreExpLocalStorage === null) return;
   else moreExperienceData = addedMoreExpLocalStorage;
 
-
   moreExperienceData.forEach((data, i) => {
     // Markup HTML
     markupExpElement.markupExp(
@@ -361,7 +360,6 @@ document.addEventListener('DOMContentLoaded', function () {
     );
 
     if (!data.positionValue) {
-
       document.getElementById(
         data.positionOutput
       ).textContent = `React Native Developer`;
@@ -372,7 +370,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     if (!data.emplyerValue) {
-
       document.getElementById(data.employerOutput).textContent = `Microsoft`;
     } else {
       document.getElementById(data.employerOutput).textContent =
@@ -381,7 +378,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     if (!data.startDateValue) {
-
       document.getElementById(data.startDateOutput).textContent = `2020-09-23`;
     } else {
       document.getElementById(data.startDateOutput).textContent =
@@ -390,7 +386,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     if (!data.endDateValue) {
-
       document.getElementById(data.endDateOutput).textContent = `2028-12-28`;
     } else {
       document.getElementById(data.endDateOutput).textContent =
@@ -399,7 +394,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     if (!data.aboutValue) {
-
       document.getElementById(
         data.aboutExpOutput
       ).textContent = `Experienced Javascript Native Developer with 5 years in the industry. proficient withreact. Used problem-solving aptitude to encahge application performance by 14%.created data visualisation tools and integrated designs.`;
@@ -506,8 +500,6 @@ document.addEventListener('DOMContentLoaded', function () {
   if (addedMoreEduLocalStorage === null) return;
   else moreEducationData = addedMoreEduLocalStorage;
 
-
-  
   //////////////////////////////////////
   // Getting Values
   moreEducationData.forEach((data, i) => {
@@ -520,7 +512,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // UNIVERSITY
     if (!data.universityValue) {
-
       document.getElementById(
         data.universityOutput
       ).textContent = `საქართველოს მეცნიერების აკადემია`;
@@ -533,7 +524,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // LEVEL
     if (!data.levelValue) {
-
       document.getElementById(data.levelOutput).textContent = `სტუდენტი`;
     } else {
       document.getElementById(data.levelOutput).textContent = data.levelValue;
@@ -542,7 +532,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // END DATE
     if (!data.endDateValue) {
-
       document.getElementById(data.endDateOutput).textContent = `2020-09-23`;
     } else {
       document.getElementById(data.endDateOutput).textContent =
@@ -552,7 +541,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // DESCRIPTION
     if (!data.aboutValue) {
-
       document.getElementById(
         data.aboutEduOutput
       ).textContent = `ვსწავლობდი გულმოდგინეთ. მყავდა ფრიადები. რაც შემეძლო — ვქენი. კომპიუტერები მიყვარდა. ვიჯექი ჩემთვის, ვაკაკუნებდი ამ კლავიშებზე. მეუნებოდნენ — დაჯექი, წაიკითხე რამე, რას აკაკუნებ, დრო მოვა და ჩაგიკაკუნებსო. აჰა, მოვიდა დრო და ვერა ვარ დეველოპერი?`;
@@ -645,8 +633,6 @@ starterBtnSection_1.addEventListener('click', e => {
   if (popupAlertduLocalStorage === null) return;
   else popupAlert.popup = popupAlertduLocalStorage.popup;
 
-  
-  
   if (!popupAlert.popup) closeBtnContainer.style.display = 'none';
 
   section1.style.display = 'none';
@@ -695,17 +681,19 @@ backtBtnSection_3.addEventListener('click', e => {
 
 /** FINISH BTN SECTION_4 */
 finishBtnSection_4.addEventListener('click', e => {
-
   let isValid = true;
 
   requiredInputs.forEach(input => {
     if (!input.value) {
       isValid = false;
     }
+
+    const parentAlert = input.closest('.alert--input');
+    if (parentAlert) isValid = false;
   });
 
   if (!isValid) {
-    alert('Please fill out all required fields');
+    alert('Please fill out all required fields correctly');
   } else {
     section4.style.display = 'none';
     section5.classList.add('finished-editing');
