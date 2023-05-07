@@ -14,28 +14,7 @@ class BtnNextBack extends View {
 
   constructor() {
     super();
-
-    // this.nextBackBTN(sectionVisibility);
   }
-
-  // doc(sectionVisibility) {
-  //   document.addEventListener('DOMContentLoaded', function (sectionVisibility) {
-  //     // f();
-  //     const localStorageSectionVisibility = function () {
-  //       let sectionVisibilityLocalStorage = JSON.parse(
-  //         localStorage.getItem('sectionVisibility')
-  //       );
-
-  //       if (sectionVisibilityLocalStorage === null) return;
-  //       else sectionVisibility = sectionVisibilityLocalStorage;
-  //       if (sectionVisibility.section2) {
-  //         this._section1.style.display = 'none';
-  //         this._section2.style.display = 'block';
-  //         this._section5.style.display = 'block';
-  //       }
-  //     };
-  //   });
-  // }
 
   hideStarterPage() {
     this._section1.style.display = 'none';

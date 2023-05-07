@@ -351,7 +351,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (addedMoreExpLocalStorage === null) return;
   else moreExperienceData = addedMoreExpLocalStorage;
 
-  console.log(addedMoreExpLocalStorage);
+
   moreExperienceData.forEach((data, i) => {
     // Markup HTML
     markupExpElement.markupExp(
@@ -361,7 +361,7 @@ document.addEventListener('DOMContentLoaded', function () {
     );
 
     if (!data.positionValue) {
-      console.log(data.positionValue);
+
       document.getElementById(
         data.positionOutput
       ).textContent = `React Native Developer`;
@@ -372,7 +372,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     if (!data.emplyerValue) {
-      console.log(data.emplyerValue);
+
       document.getElementById(data.employerOutput).textContent = `Microsoft`;
     } else {
       document.getElementById(data.employerOutput).textContent =
@@ -381,7 +381,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     if (!data.startDateValue) {
-      console.log(data.startDateValue);
+
       document.getElementById(data.startDateOutput).textContent = `2020-09-23`;
     } else {
       document.getElementById(data.startDateOutput).textContent =
@@ -390,7 +390,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     if (!data.endDateValue) {
-      console.log(data.endDateValue);
+
       document.getElementById(data.endDateOutput).textContent = `2028-12-28`;
     } else {
       document.getElementById(data.endDateOutput).textContent =
@@ -399,7 +399,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     if (!data.aboutValue) {
-      console.log(data.aboutValue);
+
       document.getElementById(
         data.aboutExpOutput
       ).textContent = `Experienced Javascript Native Developer with 5 years in the industry. proficient withreact. Used problem-solving aptitude to encahge application performance by 14%.created data visualisation tools and integrated designs.`;
@@ -506,8 +506,8 @@ document.addEventListener('DOMContentLoaded', function () {
   if (addedMoreEduLocalStorage === null) return;
   else moreEducationData = addedMoreEduLocalStorage;
 
-  console.log(addedMoreEduLocalStorage);
 
+  
   //////////////////////////////////////
   // Getting Values
   moreEducationData.forEach((data, i) => {
@@ -520,7 +520,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // UNIVERSITY
     if (!data.universityValue) {
-      console.log(data.universityValue);
+
       document.getElementById(
         data.universityOutput
       ).textContent = `საქართველოს მეცნიერების აკადემია`;
@@ -533,7 +533,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // LEVEL
     if (!data.levelValue) {
-      console.log(data.levelValue);
+
       document.getElementById(data.levelOutput).textContent = `სტუდენტი`;
     } else {
       document.getElementById(data.levelOutput).textContent = data.levelValue;
@@ -542,7 +542,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // END DATE
     if (!data.endDateValue) {
-      console.log(data.endDateValue);
+
       document.getElementById(data.endDateOutput).textContent = `2020-09-23`;
     } else {
       document.getElementById(data.endDateOutput).textContent =
@@ -552,7 +552,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // DESCRIPTION
     if (!data.aboutValue) {
-      console.log(data.aboutValue);
+
       document.getElementById(
         data.aboutEduOutput
       ).textContent = `ვსწავლობდი გულმოდგინეთ. მყავდა ფრიადები. რაც შემეძლო — ვქენი. კომპიუტერები მიყვარდა. ვიჯექი ჩემთვის, ვაკაკუნებდი ამ კლავიშებზე. მეუნებოდნენ — დაჯექი, წაიკითხე რამე, რას აკაკუნებ, დრო მოვა და ჩაგიკაკუნებსო. აჰა, მოვიდა დრო და ვერა ვარ დეველოპერი?`;
@@ -644,9 +644,9 @@ starterBtnSection_1.addEventListener('click', e => {
   let popupAlertduLocalStorage = JSON.parse(localStorage.getItem('popupAlert'));
   if (popupAlertduLocalStorage === null) return;
   else popupAlert.popup = popupAlertduLocalStorage.popup;
-  console.log(popupAlertduLocalStorage);
-  console.log(popupAlert);
 
+  
+  
   if (!popupAlert.popup) closeBtnContainer.style.display = 'none';
 
   section1.style.display = 'none';
@@ -695,7 +695,7 @@ backtBtnSection_3.addEventListener('click', e => {
 
 /** FINISH BTN SECTION_4 */
 finishBtnSection_4.addEventListener('click', e => {
-  console.log(88);
+
   let isValid = true;
 
   requiredInputs.forEach(input => {
@@ -722,7 +722,6 @@ finishBtnSection_4.addEventListener('click', e => {
     closeBtnContainer.style.display = 'flex';
     localStorage.setItem('popupAlert', JSON.stringify(popupAlert));
   }
-  console.log(isValid);
 });
 
 /** BACK BTN SECTION_4 */
@@ -984,14 +983,12 @@ arrowBtnSection_1.addEventListener('click', function (e) {
 // Top-Left Arrow BTN Experience Section
 arrowBtnSection_2.addEventListener('click', function (e) {
   moreExperienceData.forEach((data, i) => {
-    console.log(data);
     document.getElementById(data.sectionEdit).remove();
     document.getElementById(data.sectionView).remove();
   });
   ////
   localStorage.removeItem('moreExperienceData');
   moreExperienceData = [];
-  console.log(moreExperienceData);
 
   if (
     !sectionVisibility.section1 &&
@@ -1024,14 +1021,12 @@ arrowBtnSection_2.addEventListener('click', function (e) {
 // Top-Left Arrow BTN Education Section
 arrowBtnSection_3.addEventListener('click', function (e) {
   moreEducationData.forEach((data, i) => {
-    console.log(data);
     document.getElementById(data.sectionEdit).remove();
     document.getElementById(data.sectionView).remove();
   });
   ////
   localStorage.removeItem('moreEducationData');
   moreEducationData = [];
-  console.log(moreExperienceData);
 
   if (
     !sectionVisibility.section1 &&
@@ -1094,7 +1089,6 @@ arrowBtnSection_4.addEventListener('click', function (e) {
 
   // Experience info
   moreExperienceData.forEach((data, i) => {
-    console.log(data);
     document.getElementById(data.sectionEdit).remove();
     document.getElementById(data.sectionView).remove();
   });
@@ -1104,7 +1098,6 @@ arrowBtnSection_4.addEventListener('click', function (e) {
 
   // Education info
   moreEducationData.forEach((data, i) => {
-    console.log(data);
     document.getElementById(data.sectionEdit).remove();
     document.getElementById(data.sectionView).remove();
   });
@@ -1114,7 +1107,6 @@ arrowBtnSection_4.addEventListener('click', function (e) {
   EDUCATION_INFO_DEFAULT();
 
   popupAlert.popup = false;
-  console.log(popupAlert.popup);
   localStorage.setItem('popupAlert', JSON.stringify(popupAlert));
 });
 
@@ -1162,7 +1154,6 @@ moreEperienceBtn.addEventListener('click', function (e) {
   /////////////////////////////////////////////
   // TO GET VALUE
   moreExperienceData.forEach((data, i) => {
-    console.log(data.id);
     // POSITION
     document
       .getElementById(data.positionInput)
