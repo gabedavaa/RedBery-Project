@@ -15,6 +15,8 @@ import universityElement from './views/education/universityElement.js';
 import markupEduElement from './views/education/markupEduElement.js';
 //////////////////////////////////////////////////
 /////////////////////////////////////////////////
+const requiredInputs = document.querySelectorAll('[required]');
+
 const moreEperienceBtn = document.getElementById('more-experience-btn');
 const moreExperienceContainer = document.getElementById(
   'more-experience-container'
@@ -126,7 +128,6 @@ const aboutStudyOutput = document.getElementById('about-edu-output');
 //////////////////////////////////////////
 ///////////////////////////////////////////
 const removeValidationMarks = function (div) {
-  console.log(div);
   div.classList.remove('alert--input');
   div.classList.remove('valid--input');
 };
@@ -158,7 +159,6 @@ const GENERAL_INFO_DEFAULT = function () {
   removeValidationMarks(phoneInputParentDIV);
   removeValidationMarks(aboutMeParentDIV);
 };
-console.log(nameInputParentDIV);
 
 const EXPERIENCE_INFO_DEFAULT = function () {
   positionOutput.textContent = `React Native Developer`;
@@ -641,6 +641,14 @@ document.addEventListener('DOMContentLoaded', function () {
 ////////////////////////////////
 /** STARTER BTN */
 starterBtnSection_1.addEventListener('click', e => {
+  let popupAlertduLocalStorage = JSON.parse(localStorage.getItem('popupAlert'));
+  if (popupAlertduLocalStorage === null) return;
+  else popupAlert.popup = popupAlertduLocalStorage.popup;
+  console.log(popupAlertduLocalStorage);
+  console.log(popupAlert);
+
+  if (!popupAlert.popup) closeBtnContainer.style.display = 'none';
+
   section1.style.display = 'none';
   section2.style.display = 'block';
   section5.style.display = 'block';
@@ -687,17 +695,34 @@ backtBtnSection_3.addEventListener('click', e => {
 
 /** FINISH BTN SECTION_4 */
 finishBtnSection_4.addEventListener('click', e => {
-  section4.style.display = 'none';
-  section5.classList.add('finished-editing');
+  console.log(88);
+  let isValid = true;
 
-  sectionVisibility.section4 = false;
+  requiredInputs.forEach(input => {
+    if (!input.value) {
+      isValid = false;
+    }
+  });
 
-  localStorage.setItem('sectionVisibility', JSON.stringify(sectionVisibility));
+  if (!isValid) {
+    alert('Please fill out all required fields');
+  } else {
+    section4.style.display = 'none';
+    section5.classList.add('finished-editing');
 
-  // popup
-  popupAlert.popup = true;
-  closeBtnContainer.style.display = 'flex';
-  localStorage.setItem('popupAlert', JSON.stringify(popupAlert));
+    sectionVisibility.section4 = false;
+
+    localStorage.setItem(
+      'sectionVisibility',
+      JSON.stringify(sectionVisibility)
+    );
+
+    // popup
+    popupAlert.popup = true;
+    closeBtnContainer.style.display = 'flex';
+    localStorage.setItem('popupAlert', JSON.stringify(popupAlert));
+  }
+  console.log(isValid);
 });
 
 /** BACK BTN SECTION_4 */
@@ -1087,6 +1112,10 @@ arrowBtnSection_4.addEventListener('click', function (e) {
   localStorage.removeItem('moreEducationData');
   moreEducationData = [];
   EDUCATION_INFO_DEFAULT();
+
+  popupAlert.popup = false;
+  console.log(popupAlert.popup);
+  localStorage.setItem('popupAlert', JSON.stringify(popupAlert));
 });
 
 ////////////////////////////////
